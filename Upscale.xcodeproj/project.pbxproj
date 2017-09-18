@@ -20,6 +20,14 @@
 		9A2588C01F6EBBF000117855 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2588BF1F6EBBF000117855 /* RootViewModel.swift */; };
 		9A2588C21F6EC3A500117855 /* ViewportLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2588C11F6EC3A500117855 /* ViewportLabel.swift */; };
 		9A2588C31F6ECB8700117855 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A8D06EA1F670BC000CCB651 /* LaunchScreen.storyboard */; };
+		9A2588C51F6F837F00117855 /* CameraSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2588C41F6F837F00117855 /* CameraSource.swift */; };
+		9A2588C71F6F902A00117855 /* TextureCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2588C61F6F902A00117855 /* TextureCache.swift */; };
+		9A2588C91F6F916D00117855 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588C81F6F916D00117855 /* AVFoundation.framework */; };
+		9A2588CC1F6F917800117855 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588B91F6EBBD100117855 /* Metal.framework */; };
+		9A2588CD1F6F917800117855 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588BA1F6EBBD100117855 /* MetalKit.framework */; };
+		9A2588CE1F6F917800117855 /* MetalPerformanceShaders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588BB1F6EBBD100117855 /* MetalPerformanceShaders.framework */; };
+		9A2588D01F6F91D000117855 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588CF1F6F91D000117855 /* CoreMedia.framework */; };
+		9A2588D11F6F924D00117855 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588CA1F6F917200117855 /* CoreVideo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -218,6 +226,11 @@
 		9A2588BB1F6EBBD100117855 /* MetalPerformanceShaders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalPerformanceShaders.framework; path = System/Library/Frameworks/MetalPerformanceShaders.framework; sourceTree = SDKROOT; };
 		9A2588BF1F6EBBF000117855 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		9A2588C11F6EC3A500117855 /* ViewportLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewportLabel.swift; sourceTree = "<group>"; };
+		9A2588C41F6F837F00117855 /* CameraSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSource.swift; sourceTree = "<group>"; };
+		9A2588C61F6F902A00117855 /* TextureCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureCache.swift; sourceTree = "<group>"; };
+		9A2588C81F6F916D00117855 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9A2588CA1F6F917200117855 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		9A2588CF1F6F91D000117855 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		9A8D06DE1F670BC000CCB651 /* Upscale.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Upscale.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8D06E11F670BC000CCB651 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A8D06E31F670BC000CCB651 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +245,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2588D11F6F924D00117855 /* CoreVideo.framework in Frameworks */,
+				9A2588D01F6F91D000117855 /* CoreMedia.framework in Frameworks */,
+				9A2588CC1F6F917800117855 /* Metal.framework in Frameworks */,
+				9A2588CD1F6F917800117855 /* MetalKit.framework in Frameworks */,
+				9A2588CE1F6F917800117855 /* MetalPerformanceShaders.framework in Frameworks */,
+				9A2588C91F6F916D00117855 /* AVFoundation.framework in Frameworks */,
 				9A2588B41F6EBBC700117855 /* Result.framework in Frameworks */,
 				9A2588AC1F6EBBC700117855 /* ReactiveCocoa.framework in Frameworks */,
 				9A2588B01F6EBBC700117855 /* ReactiveSwift.framework in Frameworks */,
@@ -296,6 +315,9 @@
 		9A2588B81F6EBBD000117855 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A2588CF1F6F91D000117855 /* CoreMedia.framework */,
+				9A2588CA1F6F917200117855 /* CoreVideo.framework */,
+				9A2588C81F6F916D00117855 /* AVFoundation.framework */,
 				9A2588B91F6EBBD100117855 /* Metal.framework */,
 				9A2588BA1F6EBBD100117855 /* MetalKit.framework */,
 				9A2588BB1F6EBBD100117855 /* MetalPerformanceShaders.framework */,
@@ -332,6 +354,8 @@
 				9A8D06ED1F670BC000CCB651 /* Info.plist */,
 				9A8D06F31F670C1600CCB651 /* RootBuilder.swift */,
 				9A2588C11F6EC3A500117855 /* ViewportLabel.swift */,
+				9A2588C41F6F837F00117855 /* CameraSource.swift */,
+				9A2588C61F6F902A00117855 /* TextureCache.swift */,
 			);
 			path = Upscale;
 			sourceTree = "<group>";
@@ -576,11 +600,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2588C71F6F902A00117855 /* TextureCache.swift in Sources */,
 				9A2587DA1F6EBA8600117855 /* AppDelegate.swift in Sources */,
 				9A2587DB1F6EBA8600117855 /* RootViewController.swift in Sources */,
 				9A2588C21F6EC3A500117855 /* ViewportLabel.swift in Sources */,
 				9A2588C01F6EBBF000117855 /* RootViewModel.swift in Sources */,
 				9A2587DC1F6EBA8600117855 /* RootBuilder.swift in Sources */,
+				9A2588C51F6F837F00117855 /* CameraSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
