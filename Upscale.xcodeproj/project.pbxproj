@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A0B33581F78C0A4002E10BE /* test_shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B33571F78C0A4002E10BE /* test_shaders.metal */; };
 		9A2587DA1F6EBA8600117855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D06E11F670BC000CCB651 /* AppDelegate.swift */; };
 		9A2587DB1F6EBA8600117855 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D06E31F670BC000CCB651 /* RootViewController.swift */; };
 		9A2587DC1F6EBA8600117855 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D06F31F670C1600CCB651 /* RootBuilder.swift */; };
@@ -21,7 +22,7 @@
 		9A2588C21F6EC3A500117855 /* ViewportLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2588C11F6EC3A500117855 /* ViewportLabel.swift */; };
 		9A2588C31F6ECB8700117855 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A8D06EA1F670BC000CCB651 /* LaunchScreen.storyboard */; };
 		9A2588C51F6F837F00117855 /* CameraSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2588C41F6F837F00117855 /* CameraSource.swift */; };
-		9A2588C71F6F902A00117855 /* TextureCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2588C61F6F902A00117855 /* TextureCache.swift */; };
+		9A2588C71F6F902A00117855 /* MetalCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2588C61F6F902A00117855 /* MetalCoordinator.swift */; };
 		9A2588C91F6F916D00117855 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588C81F6F916D00117855 /* AVFoundation.framework */; };
 		9A2588CC1F6F917800117855 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588B91F6EBBD100117855 /* Metal.framework */; };
 		9A2588CD1F6F917800117855 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588BA1F6EBBD100117855 /* MetalKit.framework */; };
@@ -218,6 +219,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9A0B33571F78C0A4002E10BE /* test_shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = test_shaders.metal; sourceTree = "<group>"; };
 		9A2588641F6EBBB600117855 /* ReactiveSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveSwift.xcodeproj; path = Carthage/Checkouts/ReactiveSwift/ReactiveSwift.xcodeproj; sourceTree = "<group>"; };
 		9A25887C1F6EBBB700117855 /* Result.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Result.xcodeproj; path = Carthage/Checkouts/Result/Result.xcodeproj; sourceTree = "<group>"; };
 		9A2588941F6EBBB700117855 /* ReactiveCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCocoa.xcodeproj; path = Carthage/Checkouts/ReactiveCocoa/ReactiveCocoa.xcodeproj; sourceTree = "<group>"; };
@@ -227,7 +229,7 @@
 		9A2588BF1F6EBBF000117855 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		9A2588C11F6EC3A500117855 /* ViewportLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewportLabel.swift; sourceTree = "<group>"; };
 		9A2588C41F6F837F00117855 /* CameraSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSource.swift; sourceTree = "<group>"; };
-		9A2588C61F6F902A00117855 /* TextureCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureCache.swift; sourceTree = "<group>"; };
+		9A2588C61F6F902A00117855 /* MetalCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalCoordinator.swift; sourceTree = "<group>"; };
 		9A2588C81F6F916D00117855 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9A2588CA1F6F917200117855 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		9A2588CF1F6F91D000117855 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -260,6 +262,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A0B33421F78C081002E10BE /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				9A0B33571F78C0A4002E10BE /* test_shaders.metal */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
 		9A2588631F6EBB9B00117855 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +356,7 @@
 		9A8D06E01F670BC000CCB651 /* Upscale */ = {
 			isa = PBXGroup;
 			children = (
+				9A0B33421F78C081002E10BE /* Shaders */,
 				9A8D06E11F670BC000CCB651 /* AppDelegate.swift */,
 				9A8D06E31F670BC000CCB651 /* RootViewController.swift */,
 				9A2588BF1F6EBBF000117855 /* RootViewModel.swift */,
@@ -355,7 +366,7 @@
 				9A8D06F31F670C1600CCB651 /* RootBuilder.swift */,
 				9A2588C11F6EC3A500117855 /* ViewportLabel.swift */,
 				9A2588C41F6F837F00117855 /* CameraSource.swift */,
-				9A2588C61F6F902A00117855 /* TextureCache.swift */,
+				9A2588C61F6F902A00117855 /* MetalCoordinator.swift */,
 			);
 			path = Upscale;
 			sourceTree = "<group>";
@@ -600,13 +611,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A2588C71F6F902A00117855 /* TextureCache.swift in Sources */,
+				9A2588C71F6F902A00117855 /* MetalCoordinator.swift in Sources */,
 				9A2587DA1F6EBA8600117855 /* AppDelegate.swift in Sources */,
 				9A2587DB1F6EBA8600117855 /* RootViewController.swift in Sources */,
 				9A2588C21F6EC3A500117855 /* ViewportLabel.swift in Sources */,
 				9A2588C01F6EBBF000117855 /* RootViewModel.swift in Sources */,
 				9A2587DC1F6EBA8600117855 /* RootBuilder.swift in Sources */,
 				9A2588C51F6F837F00117855 /* CameraSource.swift in Sources */,
+				9A0B33581F78C0A4002E10BE /* test_shaders.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,7 +760,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.andersha.Upscale;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -765,7 +777,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.andersha.Upscale;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

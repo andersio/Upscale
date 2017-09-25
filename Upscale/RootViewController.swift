@@ -2,9 +2,11 @@ import UIKit
 import ReactiveCocoa
 import ReactiveSwift
 import Result
+import MetalKit
 
 class RootViewController: UIViewController {
     private let viewModel: RootViewModel
+    fileprivate let renderer: Renderer
 
     private let stackView: UIStackView
     private let flipButton: UIBarButtonItem
@@ -12,31 +14,35 @@ class RootViewController: UIViewController {
     private let pinchGesture: UIGestureRecognizer
 
     // MTKView
-    private let beforeView: UIView
+    fileprivate let beforeView: MTKView
     private let beforeLabel: ViewportLabel
 
     // MTKView
-    private let afterView: UIView
+    private let afterView: MTKView
     private let afterLabel: ViewportLabel
 
     override var prefersStatusBarHidden: Bool {
         return true
     }
 
-    init(viewModel: RootViewModel) {
+    init(viewModel: RootViewModel, renderer: Renderer) {
         self.viewModel = viewModel
+        self.renderer = renderer
 
         stackView = UIStackView()
         flipButton = UIBarButtonItem()
         modeButton = UIBarButtonItem()
         pinchGesture = UIPinchGestureRecognizer()
 
-        beforeView = UIView()
+        beforeView = MTKView(frame: .zero, device: renderer.device)
         beforeLabel = ViewportLabel()
-        afterView = UIView()
+        afterView = MTKView(frame: .zero, device: renderer.device)
         afterLabel = ViewportLabel()
 
         super.init(nibName: nil, bundle: nil)
+
+        beforeView.delegate = self
+        afterView.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -183,5 +189,20 @@ class RootViewController: UIViewController {
         case .showBefore, .showAfter:
             setToolbarItems(common, animated: true)
         }
+    }
+}
+
+extension RootViewController: MTKViewDelegate {
+    func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+
+    }
+
+    func draw(in view: MTKView) {
+        //if view === beforeView {
+            guard let drawable = view.currentDrawable,
+                  let descriptor = view.currentRenderPassDescriptor
+                else { return }
+            renderer.draw(to: drawable, using: descriptor)
+        //}
     }
 }

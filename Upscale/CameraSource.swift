@@ -30,34 +30,48 @@ final class AVCameraSource: NSObject, CameraSource {
 
     static var ensureAuthorized: SignalProducer<Never, CameraError> {
         return SignalProducer { observer, _ in
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo) { hasGranted in
+            AVCaptureDevice.requestAccess(for: .video) { hasGranted in
                 observer.send(hasGranted ? .completed : .failed(.unauthorized))
             }
         }
     }
 
     static var getDevice: SignalProducer<AVCaptureDevice, CameraError> {
-        let device = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera,
-                                                   mediaType: AVMediaTypeVideo,
-                                                   position: .back)
+        let device = AVCaptureDevice.default(.builtInWideAngleCamera,
+                                             for: .video,
+                                             position: .back)
         return SignalProducer(result: Result(device, failWith: .sourceCreationFailed(.noDevice)))
     }
 
-    static func createIOAndSession(for device: AVCaptureDevice) -> SignalProducer<(AVCaptureSession, AVCaptureDeviceInput, AVCaptureVideoDataOutput), CameraError> {
-        return SignalProducer { () -> Result<(AVCaptureSession, AVCaptureDeviceInput, AVCaptureVideoDataOutput), CameraError> in
+    static func createIOAndSession(for device: AVCaptureDevice) -> SignalProducer<CameraSource, CameraError> {
+        return SignalProducer { () -> Result<CameraSource, CameraError> in
             guard let input = try? AVCaptureDeviceInput(device: device)
                 else { return .failure(.sourceCreationFailed(.inputCreationDenied)) }
             let output = AVCaptureVideoDataOutput()
             let session = AVCaptureSession()
             session.beginConfiguration()
-            defer { session.commitConfiguration() }
 
             guard session.canAddInput(input)
                 else { return .failure(.sourceCreationFailed(.inputRegistrationDenied)) }
+
+            let source = self.init(session: session, input: input, output: output)
+            output.videoSettings = [
+                kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA //kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange
+            ]
+            output.setSampleBufferDelegate(source, queue: source.queue)
+
             guard session.canAddOutput(output)
                 else { return .failure(.sourceCreationFailed(.outputRegistrationDenied)) }
 
-            return .success((session, input, output))
+            session.addInput(input)
+            session.addOutput(output)
+
+            defer {
+                session.commitConfiguration()
+                session.startRunning()
+            }
+
+            return .success(source)
         }
     }
 
@@ -65,8 +79,6 @@ final class AVCameraSource: NSObject, CameraSource {
         return ensureAuthorized
             .then(getDevice)
             .flatMap(.race, createIOAndSession)
-            .map(self.init)
-            .map { $0 }
     }
 
     private init(session: AVCaptureSession, input: AVCaptureDeviceInput, output: AVCaptureVideoDataOutput) {
@@ -74,22 +86,11 @@ final class AVCameraSource: NSObject, CameraSource {
         queue = DispatchQueue(label: "com.andersha.Upscale.CameraSource.sampleBufferDelegateQueue")
         (samples, samplesObserver) = Signal.pipe()
         super.init()
-
-        session.beginConfiguration()
-        defer {
-            session.commitConfiguration()
-            session.startRunning()
-        }
-
-        output.setSampleBufferDelegate(self, queue: queue)
-        output.videoSettings = [
-            kCVPixelBufferPixelFormatTypeKey: kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange
-        ]
     }
 }
 
 extension AVCameraSource: AVCaptureVideoDataOutputSampleBufferDelegate {
-    func captureOutput(_ output: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         if let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
             samplesObserver.send(value: imageBuffer)
         }
