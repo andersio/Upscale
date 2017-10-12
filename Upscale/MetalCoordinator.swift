@@ -15,6 +15,8 @@ protocol Renderer: class {
 final class MetalCoordinator: Renderer {
     let device: MTLDevice
 
+    let superResolution: SuperResolution
+
     private let cameraSource: CameraSource
     private let library: MTLLibrary
     private let pipelineState: MTLRenderPipelineState
@@ -38,6 +40,23 @@ final class MetalCoordinator: Renderer {
         pipeline.vertexFunction = library.makeFunction(name: "test_vertex")
         pipeline.fragmentFunction = library.makeFunction(name: "test_fragment")
         pipelineState = try! device.makeRenderPipelineState(descriptor: pipeline)
+
+        let bundle = Bundle(for: MetalCoordinator.self)
+        let descriptor = SuperResolution.WeightsDescriptor(
+            hiddenLayer0Weight: bundle.url(forResource: "w_h0", withExtension: nil)!,
+            hiddenLayer1Weight: bundle.url(forResource: "w_h1", withExtension: nil)!,
+            subpixelLayerWeight: bundle.url(forResource: "w_h2", withExtension: nil)!,
+            hiddenLayer0Bias: bundle.url(forResource: "b_h0", withExtension: nil)!,
+            hiddenLayer1Bias: bundle.url(forResource: "b_h1", withExtension: nil)!,
+            subpixelLayerBias: bundle.url(forResource: "b_h2", withExtension: nil)!
+        )
+
+        superResolution = try! SuperResolution(device: device,
+                                               inputBatchSize: 1,
+                                               subpixelScale: 4,
+                                               colorChannels: 3,
+                                               featureChannels: 64,
+                                               weights: descriptor)
 
         cameraSource
             .samples

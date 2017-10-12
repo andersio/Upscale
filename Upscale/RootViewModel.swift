@@ -1,8 +1,14 @@
 import ReactiveSwift
 import Result
+import CoreVideo
+import UIKit
 
 final class RootViewModel {
     private let (lifetime, token) = Lifetime.make()
+
+    enum Event {
+        case showCropper(UIImage)
+    }
 
     enum Axis {
         case horizontal
@@ -27,7 +33,10 @@ final class RootViewModel {
     let switchMode: Action<(), Never, NoError>
     let zoom: BindingTarget<ZoomAction>
 
-    init() {
+    let events: Signal<Event, NoError>
+    let infer: Action<(), Never, NoError>
+
+    init(cameraSource: CameraSource) {
         let mode = MutableProperty(Mode.showBoth)
         self.mode = Property(capturing: mode)
         self.switchMode = Action {
@@ -65,5 +74,12 @@ final class RootViewModel {
                 }
             }
         }
+
+        self.infer = Action { _ in .empty }
+        events = infer.completed
+            .withLatest(from: cameraSource.samples)
+            .observe(on: QueueScheduler())
+            .map { UIImage(ciImage: CIImage(cvImageBuffer: $0.1)) }
+            .map(Event.showCropper)
     }
 }

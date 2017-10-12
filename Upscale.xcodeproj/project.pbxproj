@@ -29,6 +29,25 @@
 		9A2588CE1F6F917800117855 /* MetalPerformanceShaders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588BB1F6EBBD100117855 /* MetalPerformanceShaders.framework */; };
 		9A2588D01F6F91D000117855 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588CF1F6F91D000117855 /* CoreMedia.framework */; };
 		9A2588D11F6F924D00117855 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588CA1F6F917200117855 /* CoreVideo.framework */; };
+		9A2631091F8338A400BF3DE9 /* SuperResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2631081F8338A400BF3DE9 /* SuperResolution.swift */; };
+		9AECFE0D1F8F4A8E007FFC61 /* activators.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE0B1F8F37A7007FFC61 /* activators.metal */; };
+		9AECFE0F1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE0E1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift */; };
+		9AECFE111F8F595D007FFC61 /* TransposedConvolutionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE101F8F595D007FFC61 /* TransposedConvolutionLayer.swift */; };
+		9AECFE131F8F597C007FFC61 /* Activator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE121F8F597C007FFC61 /* Activator.swift */; };
+		9AECFE511F9076A3007FFC61 /* w_h0 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE391F9076A3007FFC61 /* w_h0 */; };
+		9AECFE521F9076A3007FFC61 /* w_h1 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3A1F9076A3007FFC61 /* w_h1 */; };
+		9AECFE531F9076A3007FFC61 /* b_h2 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3B1F9076A3007FFC61 /* b_h2 */; };
+		9AECFE541F9076A3007FFC61 /* w_h2 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3C1F9076A3007FFC61 /* w_h2 */; };
+		9AECFE551F9076A3007FFC61 /* b_h1 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3D1F9076A3007FFC61 /* b_h1 */; };
+		9AECFE561F9076A3007FFC61 /* b_h0 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3E1F9076A3007FFC61 /* b_h0 */; };
+		9AECFE661F90787C007FFC61 /* TOCropViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AECFE631F907875007FFC61 /* TOCropViewController.framework */; };
+		9AECFE671F90787C007FFC61 /* TOCropViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AECFE631F907875007FFC61 /* TOCropViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9AECFE6B1F9079FE007FFC61 /* RootFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE6A1F9079FE007FFC61 /* RootFlowController.swift */; };
+		9AECFE6D1F907C06007FFC61 /* ImageCropperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE6C1F907C06007FFC61 /* ImageCropperViewController.swift */; };
+		9AECFE6F1F907F07007FFC61 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE6E1F907F07007FFC61 /* Operators.swift */; };
+		9AECFE711F907F9A007FFC61 /* InferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE701F907F9A007FFC61 /* InferenceViewController.swift */; };
+		9AECFE731F907FA6007FFC61 /* InferenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE721F907FA6007FFC61 /* InferenceViewModel.swift */; };
+		9AECFE751F907FD1007FFC61 /* ImageCropperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE741F907FD1007FFC61 /* ImageCropperViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +219,41 @@
 			remoteGlobalIDString = D454807C1A957361009D7229;
 			remoteInfo = "Result-iOS";
 		};
+		9AECFE5E1F907875007FFC61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AECFE571F907874007FFC61 /* TOCropViewControllerExample.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2234246A1ABBC0CD00BBC2B1;
+			remoteInfo = TOCropViewControllerExample;
+		};
+		9AECFE601F907875007FFC61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AECFE571F907874007FFC61 /* TOCropViewControllerExample.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 220611971B2E6777001A467B;
+			remoteInfo = TOCropViewControllerTests;
+		};
+		9AECFE621F907875007FFC61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AECFE571F907874007FFC61 /* TOCropViewControllerExample.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 144B8CC91D22CAFF0085D774;
+			remoteInfo = TOCropViewController;
+		};
+		9AECFE641F907875007FFC61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AECFE571F907874007FFC61 /* TOCropViewControllerExample.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2F5062DC1F53E2D900AA9F14;
+			remoteInfo = "TOCropViewControllerExample-Extension";
+		};
+		9AECFE681F90787C007FFC61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AECFE571F907874007FFC61 /* TOCropViewControllerExample.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 144B8CC81D22CAFF0085D774;
+			remoteInfo = TOCropViewController;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -209,6 +263,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				9AECFE671F90787C007FFC61 /* TOCropViewController.framework in Embed Frameworks */,
 				9A2588B51F6EBBC700117855 /* Result.framework in Embed Frameworks */,
 				9A2588AD1F6EBBC700117855 /* ReactiveCocoa.framework in Embed Frameworks */,
 				9A2588B11F6EBBC700117855 /* ReactiveSwift.framework in Embed Frameworks */,
@@ -233,6 +288,7 @@
 		9A2588C81F6F916D00117855 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9A2588CA1F6F917200117855 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		9A2588CF1F6F91D000117855 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		9A2631081F8338A400BF3DE9 /* SuperResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperResolution.swift; sourceTree = "<group>"; };
 		9A8D06DE1F670BC000CCB651 /* Upscale.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Upscale.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8D06E11F670BC000CCB651 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A8D06E31F670BC000CCB651 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +296,23 @@
 		9A8D06EB1F670BC000CCB651 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A8D06ED1F670BC000CCB651 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A8D06F31F670C1600CCB651 /* RootBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
+		9AECFE0B1F8F37A7007FFC61 /* activators.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = activators.metal; sourceTree = "<group>"; };
+		9AECFE0E1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubpixelConvolutionLayer.swift; sourceTree = "<group>"; };
+		9AECFE101F8F595D007FFC61 /* TransposedConvolutionLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransposedConvolutionLayer.swift; sourceTree = "<group>"; };
+		9AECFE121F8F597C007FFC61 /* Activator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activator.swift; sourceTree = "<group>"; };
+		9AECFE391F9076A3007FFC61 /* w_h0 */ = {isa = PBXFileReference; lastKnownFileType = file; path = w_h0; sourceTree = "<group>"; };
+		9AECFE3A1F9076A3007FFC61 /* w_h1 */ = {isa = PBXFileReference; lastKnownFileType = file; path = w_h1; sourceTree = "<group>"; };
+		9AECFE3B1F9076A3007FFC61 /* b_h2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = b_h2; sourceTree = "<group>"; };
+		9AECFE3C1F9076A3007FFC61 /* w_h2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = w_h2; sourceTree = "<group>"; };
+		9AECFE3D1F9076A3007FFC61 /* b_h1 */ = {isa = PBXFileReference; lastKnownFileType = file; path = b_h1; sourceTree = "<group>"; };
+		9AECFE3E1F9076A3007FFC61 /* b_h0 */ = {isa = PBXFileReference; lastKnownFileType = file; path = b_h0; sourceTree = "<group>"; };
+		9AECFE571F907874007FFC61 /* TOCropViewControllerExample.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TOCropViewControllerExample.xcodeproj; path = Carthage/Checkouts/TOCropViewController/TOCropViewControllerExample.xcodeproj; sourceTree = "<group>"; };
+		9AECFE6A1F9079FE007FFC61 /* RootFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFlowController.swift; sourceTree = "<group>"; };
+		9AECFE6C1F907C06007FFC61 /* ImageCropperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropperViewController.swift; sourceTree = "<group>"; };
+		9AECFE6E1F907F07007FFC61 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		9AECFE701F907F9A007FFC61 /* InferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceViewController.swift; sourceTree = "<group>"; };
+		9AECFE721F907FA6007FFC61 /* InferenceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceViewModel.swift; sourceTree = "<group>"; };
+		9AECFE741F907FD1007FFC61 /* ImageCropperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropperViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +320,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AECFE661F90787C007FFC61 /* TOCropViewController.framework in Frameworks */,
 				9A2588D11F6F924D00117855 /* CoreVideo.framework in Frameworks */,
 				9A2588D01F6F91D000117855 /* CoreMedia.framework in Frameworks */,
 				9A2588CC1F6F917800117855 /* Metal.framework in Frameworks */,
@@ -265,6 +339,7 @@
 		9A0B33421F78C081002E10BE /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				9AECFE0B1F8F37A7007FFC61 /* activators.metal */,
 				9A0B33571F78C0A4002E10BE /* test_shaders.metal */,
 			);
 			path = Shaders;
@@ -273,6 +348,7 @@
 		9A2588631F6EBB9B00117855 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				9AECFE571F907874007FFC61 /* TOCropViewControllerExample.xcodeproj */,
 				9A2588941F6EBBB700117855 /* ReactiveCocoa.xcodeproj */,
 				9A2588641F6EBBB600117855 /* ReactiveSwift.xcodeproj */,
 				9A25887C1F6EBBB700117855 /* Result.xcodeproj */,
@@ -335,6 +411,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9A2630F51F83389600BF3DE9 /* subpixel */ = {
+			isa = PBXGroup;
+			children = (
+				9A2631081F8338A400BF3DE9 /* SuperResolution.swift */,
+				9AECFE101F8F595D007FFC61 /* TransposedConvolutionLayer.swift */,
+				9AECFE0E1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift */,
+				9AECFE121F8F597C007FFC61 /* Activator.swift */,
+			);
+			path = subpixel;
+			sourceTree = "<group>";
+		};
 		9A8D06D51F670BC000CCB651 = {
 			isa = PBXGroup;
 			children = (
@@ -356,19 +443,51 @@
 		9A8D06E01F670BC000CCB651 /* Upscale */ = {
 			isa = PBXGroup;
 			children = (
+				9AECFE381F9076A3007FFC61 /* AvatarWeights */,
+				9A2630F51F83389600BF3DE9 /* subpixel */,
 				9A0B33421F78C081002E10BE /* Shaders */,
 				9A8D06E11F670BC000CCB651 /* AppDelegate.swift */,
+				9AECFE701F907F9A007FFC61 /* InferenceViewController.swift */,
+				9AECFE721F907FA6007FFC61 /* InferenceViewModel.swift */,
 				9A8D06E31F670BC000CCB651 /* RootViewController.swift */,
 				9A2588BF1F6EBBF000117855 /* RootViewModel.swift */,
+				9AECFE6A1F9079FE007FFC61 /* RootFlowController.swift */,
+				9A8D06F31F670C1600CCB651 /* RootBuilder.swift */,
+				9AECFE741F907FD1007FFC61 /* ImageCropperViewModel.swift */,
+				9AECFE6C1F907C06007FFC61 /* ImageCropperViewController.swift */,
+				9AECFE6E1F907F07007FFC61 /* Operators.swift */,
 				9A8D06E81F670BC000CCB651 /* Assets.xcassets */,
 				9A8D06EA1F670BC000CCB651 /* LaunchScreen.storyboard */,
 				9A8D06ED1F670BC000CCB651 /* Info.plist */,
-				9A8D06F31F670C1600CCB651 /* RootBuilder.swift */,
 				9A2588C11F6EC3A500117855 /* ViewportLabel.swift */,
 				9A2588C41F6F837F00117855 /* CameraSource.swift */,
 				9A2588C61F6F902A00117855 /* MetalCoordinator.swift */,
 			);
 			path = Upscale;
+			sourceTree = "<group>";
+		};
+		9AECFE381F9076A3007FFC61 /* AvatarWeights */ = {
+			isa = PBXGroup;
+			children = (
+				9AECFE391F9076A3007FFC61 /* w_h0 */,
+				9AECFE3A1F9076A3007FFC61 /* w_h1 */,
+				9AECFE3B1F9076A3007FFC61 /* b_h2 */,
+				9AECFE3C1F9076A3007FFC61 /* w_h2 */,
+				9AECFE3D1F9076A3007FFC61 /* b_h1 */,
+				9AECFE3E1F9076A3007FFC61 /* b_h0 */,
+			);
+			path = AvatarWeights;
+			sourceTree = "<group>";
+		};
+		9AECFE581F907874007FFC61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AECFE5F1F907875007FFC61 /* TOCropViewControllerExample.app */,
+				9AECFE611F907875007FFC61 /* TOCropViewControllerTests.xctest */,
+				9AECFE631F907875007FFC61 /* TOCropViewController.framework */,
+				9AECFE651F907875007FFC61 /* TOCropViewControllerExample-Extension.appex */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,6 +508,7 @@
 				9A2588AF1F6EBBC700117855 /* PBXTargetDependency */,
 				9A2588B31F6EBBC700117855 /* PBXTargetDependency */,
 				9A2588B71F6EBBC700117855 /* PBXTargetDependency */,
+				9AECFE691F90787C007FFC61 /* PBXTargetDependency */,
 			);
 			name = Upscale;
 			productName = Upscale;
@@ -435,6 +555,10 @@
 				{
 					ProductGroup = 9A25887D1F6EBBB700117855 /* Products */;
 					ProjectRef = 9A25887C1F6EBBB700117855 /* Result.xcodeproj */;
+				},
+				{
+					ProductGroup = 9AECFE581F907874007FFC61 /* Products */;
+					ProjectRef = 9AECFE571F907874007FFC61 /* TOCropViewControllerExample.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -592,6 +716,34 @@
 			remoteRef = 9A2588AA1F6EBBB800117855 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9AECFE5F1F907875007FFC61 /* TOCropViewControllerExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = TOCropViewControllerExample.app;
+			remoteRef = 9AECFE5E1F907875007FFC61 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AECFE611F907875007FFC61 /* TOCropViewControllerTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TOCropViewControllerTests.xctest;
+			remoteRef = 9AECFE601F907875007FFC61 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AECFE631F907875007FFC61 /* TOCropViewController.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TOCropViewController.framework;
+			remoteRef = 9AECFE621F907875007FFC61 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AECFE651F907875007FFC61 /* TOCropViewControllerExample-Extension.appex */ = {
+			isa = PBXReferenceProxy;
+			fileType = "wrapper.app-extension";
+			path = "TOCropViewControllerExample-Extension.appex";
+			remoteRef = 9AECFE641F907875007FFC61 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -599,8 +751,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AECFE541F9076A3007FFC61 /* w_h2 in Resources */,
 				9A2587DD1F6EBA9C00117855 /* Assets.xcassets in Resources */,
+				9AECFE551F9076A3007FFC61 /* b_h1 in Resources */,
 				9A2588C31F6ECB8700117855 /* LaunchScreen.storyboard in Resources */,
+				9AECFE511F9076A3007FFC61 /* w_h0 in Resources */,
+				9AECFE561F9076A3007FFC61 /* b_h0 in Resources */,
+				9AECFE521F9076A3007FFC61 /* w_h1 in Resources */,
+				9AECFE531F9076A3007FFC61 /* b_h2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,12 +770,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A2588C71F6F902A00117855 /* MetalCoordinator.swift in Sources */,
+				9AECFE6B1F9079FE007FFC61 /* RootFlowController.swift in Sources */,
 				9A2587DA1F6EBA8600117855 /* AppDelegate.swift in Sources */,
 				9A2587DB1F6EBA8600117855 /* RootViewController.swift in Sources */,
+				9AECFE751F907FD1007FFC61 /* ImageCropperViewModel.swift in Sources */,
+				9AECFE0D1F8F4A8E007FFC61 /* activators.metal in Sources */,
 				9A2588C21F6EC3A500117855 /* ViewportLabel.swift in Sources */,
 				9A2588C01F6EBBF000117855 /* RootViewModel.swift in Sources */,
+				9AECFE131F8F597C007FFC61 /* Activator.swift in Sources */,
 				9A2587DC1F6EBA8600117855 /* RootBuilder.swift in Sources */,
+				9AECFE6F1F907F07007FFC61 /* Operators.swift in Sources */,
+				9AECFE731F907FA6007FFC61 /* InferenceViewModel.swift in Sources */,
+				9A2631091F8338A400BF3DE9 /* SuperResolution.swift in Sources */,
 				9A2588C51F6F837F00117855 /* CameraSource.swift in Sources */,
+				9AECFE6D1F907C06007FFC61 /* ImageCropperViewController.swift in Sources */,
+				9AECFE711F907F9A007FFC61 /* InferenceViewController.swift in Sources */,
+				9AECFE0F1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift in Sources */,
+				9AECFE111F8F595D007FFC61 /* TransposedConvolutionLayer.swift in Sources */,
 				9A0B33581F78C0A4002E10BE /* test_shaders.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -639,6 +808,11 @@
 			isa = PBXTargetDependency;
 			name = "Result-iOS";
 			targetProxy = 9A2588B61F6EBBC700117855 /* PBXContainerItemProxy */;
+		};
+		9AECFE691F90787C007FFC61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TOCropViewController;
+			targetProxy = 9AECFE681F90787C007FFC61 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

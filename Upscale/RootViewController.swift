@@ -11,6 +11,7 @@ class RootViewController: UIViewController {
     private let stackView: UIStackView
     private let flipButton: UIBarButtonItem
     private let modeButton: UIBarButtonItem
+    private let inferenceButton: UIBarButtonItem
     private let pinchGesture: UIGestureRecognizer
 
     // MTKView
@@ -32,6 +33,7 @@ class RootViewController: UIViewController {
         stackView = UIStackView()
         flipButton = UIBarButtonItem()
         modeButton = UIBarButtonItem()
+        inferenceButton = UIBarButtonItem()
         pinchGesture = UIPinchGestureRecognizer()
 
         beforeView = MTKView(frame: .zero, device: renderer.device)
@@ -79,6 +81,9 @@ class RootViewController: UIViewController {
 
         modeButton.title = "Mode"
         modeButton.reactive.pressed = CocoaAction(viewModel.switchMode)
+
+        inferenceButton.title = "Infer"
+        inferenceButton.reactive.pressed = CocoaAction(viewModel.infer)
 
         stackView.reactive[\.axis] <~ viewModel.axis.map { $0 == .horizontal ? .horizontal : .vertical }
 
@@ -182,7 +187,10 @@ class RootViewController: UIViewController {
     }
 
     private func updateToolbar(for mode: RootViewModel.Mode) {
-        let common = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), modeButton]
+        let common = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+                      inferenceButton,
+                      UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+                      modeButton]
         switch mode {
         case .showBoth:
             setToolbarItems([flipButton] + common, animated: true)
