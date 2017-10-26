@@ -6,23 +6,22 @@ final class SubpixelConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
     private let _descriptor: MPSCNNSubPixelConvolutionDescriptor
 
     private let numberOfWeights: Int
-    private let weightsBuffer: UnsafeMutablePointer<Float>
-    private let biasBuffer: UnsafeMutablePointer<Float>
+    private let outputFeatureChannels: Int
+    private let weightsUrl: URL
+    private let biasUrl: URL
+    private var weightsBuffer: UnsafeMutablePointer<Float>?
+    private var biasBuffer: UnsafeMutablePointer<Float>?
 
-    init(device: MTLDevice, kernelSize: (width: Int, height: Int), inputBatchSize: Int, inputFeatureChannels: Int, subpixelScale: Int, outputColorChannels: Int) {
+    init(device: MTLDevice, kernelSize: (width: Int, height: Int), inputBatchSize: Int, inputFeatureChannels: Int, subpixelScale: Int, outputColorChannels: Int, weights: URL, bias: URL) {
         // Support only 1 for now.
         assert(inputBatchSize == 1)
 
-        let outputFeatureChannels = outputColorChannels * subpixelScale * subpixelScale
+        outputFeatureChannels = outputColorChannels * subpixelScale * subpixelScale
 
         numberOfWeights = kernelSize.width * kernelSize.height * outputFeatureChannels * inputFeatureChannels
-        weightsBuffer = UnsafeMutablePointer.allocate(capacity: numberOfWeights)
-        for offset in 0 ..< numberOfWeights {
-            weightsBuffer.advanced(by: offset).initialize(to: .randomNormal)
-        }
 
-        biasBuffer = UnsafeMutablePointer<Float>.allocate(capacity: outputFeatureChannels)
-        biasBuffer.initialize(to: 0.0, count: outputFeatureChannels)
+        self.weightsUrl = weights
+        self.biasUrl = bias
 
         _descriptor = MPSCNNSubPixelConvolutionDescriptor()
         _descriptor.kernelWidth = kernelSize.width
@@ -35,20 +34,7 @@ final class SubpixelConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
 
         super.init()
         kernel = MPSCNNConvolution(device: device, weights: self)
-    }
-
-    deinit {
-        weightsBuffer.deinitialize()
-        weightsBuffer.deallocate(capacity: numberOfWeights)
-        biasBuffer.deinitialize()
-        biasBuffer.deallocate(capacity: kernel.outputFeatureChannels)
-    }
-
-    func initialize(bias: Data, weights: Data) {
-        assert(bias.count == kernel.outputFeatureChannels * MemoryLayout<Float>.size
-            && weights.count == numberOfWeights * MemoryLayout<Float>.size)
-        _ = bias.copyBytes(to: UnsafeMutableBufferPointer(start: biasBuffer, count: kernel.outputFeatureChannels))
-        _ = weights.copyBytes(to: UnsafeMutableBufferPointer(start: weightsBuffer, count: numberOfWeights))
+        kernel.destinationImageAllocator = MPSImage.defaultAllocator()
     }
 
     func encode(to commandBuffer: MTLCommandBuffer, source: MPSImage) -> MPSImage {
@@ -56,7 +42,7 @@ final class SubpixelConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
     }
 
     func biasTerms() -> UnsafeMutablePointer<Float>? {
-        return biasBuffer
+        return biasBuffer!
     }
 
     func dataType() -> MPSDataType {
@@ -72,13 +58,34 @@ final class SubpixelConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
     }
 
     func load() -> Bool {
+        weightsBuffer = UnsafeMutablePointer.allocate(capacity: numberOfWeights)
+        biasBuffer = UnsafeMutablePointer<Float>.allocate(capacity: outputFeatureChannels)
+        biasBuffer!.initialize(to: 0.0, count: outputFeatureChannels)
+
+        let bias = try! Data(contentsOf: biasUrl, options: [])
+        let weights = try! Data(contentsOf: weightsUrl, options: [])
+
+        assert(bias.count == outputFeatureChannels * MemoryLayout<Float>.size
+            && weights.count == numberOfWeights * MemoryLayout<Float>.size)
+        let copiedBiasBytes = bias.copyBytes(to: UnsafeMutableBufferPointer(start: biasBuffer!, count: outputFeatureChannels))
+        let copiedWeightBytes = weights.copyBytes(to: UnsafeMutableBufferPointer(start: weightsBuffer!, count: numberOfWeights))
+        assert(copiedBiasBytes == outputFeatureChannels * MemoryLayout<Float>.size
+            && copiedWeightBytes == numberOfWeights * MemoryLayout<Float>.size)
+
         return true
     }
 
-    func purge() {}
+    func purge() {
+        weightsBuffer?.deinitialize()
+        weightsBuffer?.deallocate(capacity: numberOfWeights)
+        weightsBuffer = nil
+        biasBuffer?.deinitialize()
+        biasBuffer?.deallocate(capacity: outputFeatureChannels)
+        biasBuffer = nil
+    }
 
     func weights() -> UnsafeMutableRawPointer {
-        return UnsafeMutableRawPointer(weightsBuffer)
+        return UnsafeMutableRawPointer(weightsBuffer)!
     }
 }
 

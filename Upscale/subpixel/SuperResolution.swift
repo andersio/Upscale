@@ -16,13 +16,13 @@ final class SuperResolution {
 
     let device: MTLDevice
     let library: MTLLibrary
+    let queue: MTLCommandQueue
     let inputBatchSize: Int
     let subpixelScale: Int
 
+    let transformer: Transformer
     let hiddenLayer0: TransposedConvolutionLayer
-    //let activator0: Activator
     let hiddenLayer1: TransposedConvolutionLayer
-    //let activator1: Activator
     let subpixelLayer: SubpixelConvolutionLayer
 
     init(
@@ -35,24 +35,30 @@ final class SuperResolution {
     ) throws {
         self.device = device
         self.library = device.makeDefaultLibrary()!
+        self.queue = device.makeCommandQueue(maxCommandBufferCount: 4)!
         self.inputBatchSize = inputBatchSize
         self.subpixelScale = subpixelScale
+        
+        // Transformer
+        transformer = try Transformer(device: device, library: library)
 
         // Hidden Layer 0
         hiddenLayer0 = TransposedConvolutionLayer(device: device,
                                                   kernelSize: (1, 1),
                                                   inputBatchSize: inputBatchSize,
                                                   inputFeatureChannels: colorChannels,
-                                                  outputFeatureChannels: featureChannels)
-        //activator0 = try Activator(device: device, library: library, kind: .leakyRELU(0.2))
+                                                  outputFeatureChannels: featureChannels,
+                                                  weights: weights!.hiddenLayer0Weight,
+                                                  bias: weights!.hiddenLayer0Bias)
 
         // Hidden Layer 1
         hiddenLayer1 = TransposedConvolutionLayer(device: device,
                                                   kernelSize: (5, 5),
                                                   inputBatchSize: inputBatchSize,
                                                   inputFeatureChannels: featureChannels,
-                                                  outputFeatureChannels: featureChannels)
-        //activator1 = try Activator(device: device, library: library, kind: .leakyRELU(0.2))
+                                                  outputFeatureChannels: featureChannels,
+                                                  weights: weights!.hiddenLayer1Weight,
+                                                  bias: weights!.hiddenLayer1Bias)
 
         // Subpixel Convolution Layer
         subpixelLayer = SubpixelConvolutionLayer(device: device,
@@ -60,21 +66,26 @@ final class SuperResolution {
                                                  inputBatchSize: inputBatchSize,
                                                  inputFeatureChannels: featureChannels,
                                                  subpixelScale: subpixelScale,
-                                                 outputColorChannels: colorChannels)
-
-        // Load weights and bias
-        if let weights = weights {
-            try load(weights)
-        }
+                                                 outputColorChannels: colorChannels,
+                                                 weights: weights!.subpixelLayerWeight,
+                                                 bias: weights!.subpixelLayerBias)
     }
 
-    private func load(_ weights: WeightsDescriptor) throws {
-        hiddenLayer0.initialize(bias: try Data(contentsOf: weights.hiddenLayer0Bias, options: []),
-                                weights: try Data(contentsOf: weights.hiddenLayer0Weight, options: []))
-        hiddenLayer1.initialize(bias: try Data(contentsOf: weights.hiddenLayer1Bias, options: []),
-                                weights: try Data(contentsOf: weights.hiddenLayer1Weight, options: []))
-        subpixelLayer.initialize(bias: try Data(contentsOf: weights.subpixelLayerBias, options: []),
-                                 weights: try Data(contentsOf: weights.subpixelLayerWeight, options: []))
+    func infer(_ image: MPSImage, completion: @escaping (MPSImage) -> Void) {
+        assert(image.featureChannels == 3)
+
+        let buffer = queue.makeCommandBuffer()!
+        let transformed = transformer.encodeInputTransform(to: buffer, source: image)
+        let outputH0 = hiddenLayer0.encode(to: buffer, source: transformed)
+        let outputH1 = hiddenLayer1.encode(to: buffer, source: outputH0)
+        let finalOutput = subpixelLayer.encode(to: buffer, source: outputH1)
+        let converted = transformer.encodeOutputTransform(to: buffer, source: finalOutput)
+
+        buffer.addCompletedHandler { _ in
+            completion(converted)
+        }
+
+        buffer.commit()
     }
 }
 

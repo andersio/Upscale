@@ -65,7 +65,11 @@ final class MetalCoordinator: Renderer {
 
     func draw(to drawable: MTLDrawable, using descriptor: MTLRenderPassDescriptor) {
         guard let texture = self.texture else { return }
+        draw(texture, to: drawable, using: descriptor)
+    }
 
+
+    func draw(_ texture: MTLTexture, to drawable: MTLDrawable, using descriptor: MTLRenderPassDescriptor) {
         let commandBuffer = device.makeCommandQueue()!.makeCommandBuffer()!
         let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor)!
         encoder.pushDebugGroup("RenderFrame")
