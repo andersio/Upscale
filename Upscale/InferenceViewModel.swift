@@ -26,8 +26,9 @@ final class InferenceViewModel {
         let _image = MutableProperty<UIImage?>(nil)
         self.image = Property(_image)
 
+        let downsampled = original.resized(to: CGSize(width: 32, height: 32))!
         let loader = MTKTextureLoader(device: coordinator.device)
-        let texture = try! loader.newTexture(cgImage: original.cgImage!, options: [:])
+        let texture = try! loader.newTexture(cgImage: downsampled.cgImage!, options: [:])
         let image = MPSImage(texture: texture, featureChannels: 3)
 
         let start = DispatchTime.now()

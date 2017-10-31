@@ -25,15 +25,12 @@ final class Transformer {
         encoder.setTexture(source.texture, index: 0)
         encoder.useResource(source.texture, usage: [.read])
 
-        let descriptor = MTLTextureDescriptor()
-        descriptor.pixelFormat = .rgba16Float
-        descriptor.width = source.width
-        descriptor.height = source.height
-        descriptor.usage = [.shaderWrite, .shaderRead]
+        let descriptor = MPSImageDescriptor(channelFormat: .float16, width: source.width, height: source.height, featureChannels: 3)
+        descriptor.usage = [.shaderRead, .shaderWrite]
         
-        let output = device.makeTexture(descriptor: descriptor)!
-        encoder.setTexture(output, index: 1)
-        encoder.useResource(output, usage: [.write])
+        let output = MPSImage(device: device, imageDescriptor: descriptor)
+        encoder.setTexture(output.texture, index: 1)
+        encoder.useResource(output.texture, usage: [.write])
 
         let threadGroupSize = MTLSizeMake(inputState.threadExecutionWidth,
                                           inputState.maxTotalThreadsPerThreadgroup / inputState.threadExecutionWidth,
@@ -42,10 +39,10 @@ final class Transformer {
                                 threadsPerThreadgroup: threadGroupSize)
         encoder.endEncoding()
         
-        return MPSImage(texture: output, featureChannels: 3)
+        return output
     }
     
-    func encodeOutputTransform(to commandBuffer: MTLCommandBuffer, source: MPSImage) -> MPSImage {
+    func encodeOutputTransform(to commandBuffer: MTLCommandBuffer, source: MPSImage, slice: Int = 0) -> MPSImage {
         assert(source.texture.pixelFormat == .rgba16Float)
         
         let sourceTexture: MTLTexture
@@ -53,7 +50,10 @@ final class Transformer {
         if source.textureType == .type2D {
             sourceTexture = source.texture
         } else {
-            sourceTexture = source.texture.makeTextureView(pixelFormat: .rgba16Float, textureType: .type2D, levels: 0..<1, slices: 0..<1)!
+            sourceTexture = source.texture.makeTextureView(pixelFormat: .rgba16Float,
+                                                           textureType: .type2D,
+                                                           levels: 0 ..< 1,
+                                                           slices: slice ..< slice + 1)!
         }
         
         let encoder = commandBuffer.makeComputeCommandEncoder()!

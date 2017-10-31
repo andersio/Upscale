@@ -30,8 +30,10 @@
 		9A2588D01F6F91D000117855 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588CF1F6F91D000117855 /* CoreMedia.framework */; };
 		9A2588D11F6F924D00117855 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588CA1F6F917200117855 /* CoreVideo.framework */; };
 		9A2631091F8338A400BF3DE9 /* SuperResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2631081F8338A400BF3DE9 /* SuperResolution.swift */; };
+		9AC0FCF41FA715B700A35DF5 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0FCF31FA715B700A35DF5 /* UIImage+Resize.swift */; };
 		9AD345161FA233130063ADF3 /* transformer.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9AD345151FA233130063ADF3 /* transformer.metal */; };
 		9AD3452D1FA2366B0063ADF3 /* Transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3452C1FA2366B0063ADF3 /* Transformer.swift */; };
+		9AD3452F1FA3017F0063ADF3 /* TestLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3452E1FA3017F0063ADF3 /* TestLayer.swift */; };
 		9AECFE0D1F8F4A8E007FFC61 /* activators.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE0B1F8F37A7007FFC61 /* activators.metal */; };
 		9AECFE0F1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE0E1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift */; };
 		9AECFE111F8F595D007FFC61 /* TransposedConvolutionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE101F8F595D007FFC61 /* TransposedConvolutionLayer.swift */; };
@@ -298,8 +300,10 @@
 		9A8D06EB1F670BC000CCB651 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A8D06ED1F670BC000CCB651 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A8D06F31F670C1600CCB651 /* RootBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
+		9AC0FCF31FA715B700A35DF5 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		9AD345151FA233130063ADF3 /* transformer.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = transformer.metal; sourceTree = "<group>"; };
 		9AD3452C1FA2366B0063ADF3 /* Transformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transformer.swift; sourceTree = "<group>"; };
+		9AD3452E1FA3017F0063ADF3 /* TestLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLayer.swift; sourceTree = "<group>"; };
 		9AECFE0B1F8F37A7007FFC61 /* activators.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = activators.metal; sourceTree = "<group>"; };
 		9AECFE0E1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubpixelConvolutionLayer.swift; sourceTree = "<group>"; };
 		9AECFE101F8F595D007FFC61 /* TransposedConvolutionLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransposedConvolutionLayer.swift; sourceTree = "<group>"; };
@@ -424,6 +428,7 @@
 				9AECFE0E1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift */,
 				9AD3452C1FA2366B0063ADF3 /* Transformer.swift */,
 				9AECFE121F8F597C007FFC61 /* Activator.swift */,
+				9AD3452E1FA3017F0063ADF3 /* TestLayer.swift */,
 			);
 			path = subpixel;
 			sourceTree = "<group>";
@@ -468,6 +473,7 @@
 				9A2588C11F6EC3A500117855 /* ViewportLabel.swift */,
 				9A2588C41F6F837F00117855 /* CameraSource.swift */,
 				9A2588C61F6F902A00117855 /* MetalCoordinator.swift */,
+				9AC0FCF31FA715B700A35DF5 /* UIImage+Resize.swift */,
 			);
 			path = Upscale;
 			sourceTree = "<group>";
@@ -795,7 +801,9 @@
 				9AECFE711F907F9A007FFC61 /* InferenceViewController.swift in Sources */,
 				9AECFE0F1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift in Sources */,
 				9AECFE111F8F595D007FFC61 /* TransposedConvolutionLayer.swift in Sources */,
+				9AC0FCF41FA715B700A35DF5 /* UIImage+Resize.swift in Sources */,
 				9A0B33581F78C0A4002E10BE /* test_shaders.metal in Sources */,
+				9AD3452F1FA3017F0063ADF3 /* TestLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

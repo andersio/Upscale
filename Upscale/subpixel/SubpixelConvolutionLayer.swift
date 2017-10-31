@@ -68,9 +68,25 @@ final class SubpixelConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
         assert(bias.count == outputFeatureChannels * MemoryLayout<Float>.size
             && weights.count == numberOfWeights * MemoryLayout<Float>.size)
         let copiedBiasBytes = bias.copyBytes(to: UnsafeMutableBufferPointer(start: biasBuffer!, count: outputFeatureChannels))
-        let copiedWeightBytes = weights.copyBytes(to: UnsafeMutableBufferPointer(start: weightsBuffer!, count: numberOfWeights))
-        assert(copiedBiasBytes == outputFeatureChannels * MemoryLayout<Float>.size
-            && copiedWeightBytes == numberOfWeights * MemoryLayout<Float>.size)
+        assert(copiedBiasBytes == outputFeatureChannels * MemoryLayout<Float>.size)
+
+        weights.withUnsafeBytes { (weights: UnsafePointer<Float>) in
+            let numberOfWeightsPerOutput = numberOfWeights / outputFeatureChannels
+
+            for outputIndex in 0 ..< outputFeatureChannels {
+                var sum = Float(0.0)
+
+                for weightIndex in 0 ..< numberOfWeightsPerOutput {
+                    let index = outputIndex * numberOfWeightsPerOutput + weightIndex
+                    sum += weights[index]
+                }
+
+                for weightIndex in 0 ..< numberOfWeightsPerOutput {
+                    let index = outputIndex * numberOfWeightsPerOutput + weightIndex
+                    weightsBuffer![index] = weights[index] / sum
+                }
+            }
+        }
 
         return true
     }

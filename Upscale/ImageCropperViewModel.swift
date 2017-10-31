@@ -17,14 +17,8 @@ class ImageCropperViewModel {
     }
 
     func commit(_ rect: CGRect) {
-        let targetSize = CGSize(width: 128, height: 128)
-        UIGraphicsBeginImageContextWithOptions(targetSize, true, image.scale)
-        UIRectClip(CGRect(x: -rect.minX, y: -rect.minY, width: rect.width, height: rect.height))
-        image.draw(in: CGRect(origin: .zero, size: targetSize))
-        defer { UIGraphicsEndImageContext() }
-        guard let finalImage = UIGraphicsGetImageFromCurrentImageContext()
+        guard let finalImage = image.resized(to: CGSize(width: 128, height: 128), cropping: rect)
             else { return }
         eventsObserver.send(value: .userDidFinishCropping(finalImage))
     }
 }
-
