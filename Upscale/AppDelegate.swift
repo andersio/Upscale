@@ -10,12 +10,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow()
         self.window = window
 
+        let image = UIImage(named: "one_input")!
+
+        let builder = _RootChildBuilders(coordinator: MetalCoordinator())
+        window.rootViewController = builder.makeInferrer(for: image, router: { _ in })
+        window.makeKeyAndVisible()
+
+/*
         AVCameraSource.make()
             .observe(on: UIScheduler())
             .startWithResult { result in
                 switch result {
                 case let .success(source):
-                    let builder = RootBuilder()
                     window.rootViewController = builder.make(cameraSource: source)
                     window.makeKeyAndVisible()
                 case let .failure(error):
@@ -26,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     window.rootViewController!.present(alertController, animated: true, completion: nil)
                 }
             }
-
+*/
         return true
     }
 

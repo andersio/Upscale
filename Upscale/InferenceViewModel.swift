@@ -10,6 +10,7 @@ final class InferenceViewModel {
         case close
     }
 
+    let c: MetalCoordinator
     let original: UIImage
     let events: Signal<Event, NoError>
 
@@ -18,7 +19,9 @@ final class InferenceViewModel {
     private let eventsObserver: Signal<Event, NoError>.Observer
 
     init(original: UIImage, coordinator: MetalCoordinator) {
-        assert(original.size == CGSize(width: 128, height: 128))
+        c = coordinator
+
+        assert(original.size == CGSize(width: 32, height: 32))
         self.original = original
 
         (events, eventsObserver) = Signal.pipe()
@@ -27,8 +30,23 @@ final class InferenceViewModel {
         self.image = Property(_image)
 
         let downsampled = original.resized(to: CGSize(width: 32, height: 32))!
-        let loader = MTKTextureLoader(device: coordinator.device)
-        let texture = try! loader.newTexture(cgImage: downsampled.cgImage!, options: [:])
+
+        let descriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .rgba32Float, width: 32, height: 32, mipmapped: false)
+        let texture = coordinator.device.makeTexture(descriptor: descriptor)!
+
+        let data = try! Data(contentsOf: Bundle.main.url(forResource: "in_test", withExtension: nil)!)
+        var rgba: [Float] = Array(repeating: 0.0, count: 32 * 32 * 4)
+        data.withUnsafeBytes { (floats: UnsafePointer<Float>) in
+            for i in 0 ..< 32*32 {
+                rgba[i * 4] = floats[i * 3]
+                rgba[i * 4 + 1] = floats[i * 3 + 1]
+                rgba[i * 4 + 2] = floats[i * 3 + 2]
+                rgba[i * 4 + 3] = 255.0
+            }
+        }
+
+        texture.replace(region: MTLRegionMake2D(0, 0, 32, 32), mipmapLevel: 0, withBytes: &rgba, bytesPerRow: 512)
+
         let image = MPSImage(texture: texture, featureChannels: 3)
 
         let start = DispatchTime.now()
@@ -53,41 +71,6 @@ final class InferenceViewModel {
 
 extension UIImage {
     convenience init(texture: MTLTexture) {
-        assert(texture.pixelFormat == .rgba8Unorm, "Pixel format of texture must be MTLPixelFormatRGBA8Unorm to create UIImage")
-        
-        let imageByteCount = texture.width * texture.height * 4
-        let imageBytes = malloc(imageByteCount)!
-        let bytesPerRow = texture.width * 4
-        let region = MTLRegionMake2D(0, 0, texture.width, texture.height)
-
-        texture.getBytes(imageBytes, bytesPerRow: bytesPerRow, from: region, mipmapLevel: 0)
-
-        for pixel in 0 ..< texture.width * texture.height {
-            imageBytes.advanced(by: pixel * 4 + 3)
-                .assumingMemoryBound(to: UInt8.self)
-                .pointee = .max
-        }
-
-        let provider = CGDataProvider(dataInfo: nil,
-                                      data: imageBytes,
-                                      size: imageByteCount,
-                                      releaseData: { _, data, _ in free(UnsafeMutableRawPointer(mutating: data)) })!
-        let bitsPerComponent = 8
-        let bitsPerPixel = 32
-        let colorSpaceRef = CGColorSpaceCreateDeviceRGB();
-        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.first.rawValue | CGBitmapInfo.byteOrder32Little.rawValue)
-        let image = CGImage(width: texture.width,
-                            height: texture.height,
-                            bitsPerComponent: bitsPerComponent,
-                            bitsPerPixel: bitsPerPixel,
-                            bytesPerRow: bytesPerRow,
-                            space: colorSpaceRef,
-                            bitmapInfo: bitmapInfo,
-                            provider: provider,
-                            decode: nil,
-                            shouldInterpolate: false,
-                            intent: .defaultIntent)!
-
-        self.init(cgImage: image, scale: 0.0, orientation: .downMirrored)
+        self.init(cgImage: CGImage.make(texture: texture), scale: 0.0, orientation: .up)
     }
 }

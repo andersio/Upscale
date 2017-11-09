@@ -26,6 +26,7 @@ final class SuperResolution {
     let hiddenLayer0: TransposedConvolutionLayer
     let hiddenLayer1: TransposedConvolutionLayer
     let subpixelLayer: SubpixelConvolutionLayer
+    let activator: Activator
 
     init(
         device: MTLDevice,
@@ -40,9 +41,11 @@ final class SuperResolution {
         self.queue = device.makeCommandQueue(maxCommandBufferCount: 4)!
         self.inputBatchSize = inputBatchSize
         self.subpixelScale = subpixelScale
-        
+
+        activator = try Activator(device: device, library: library, kind: .leakyRELU(0.2))
+
         // Transformer
-        transformer = try Transformer(device: device, library: library)
+        transformer = try Transformer(device: device, library: library, finalFeatureChannels: 48, scaleFactor: 4)
 
         // Test Layer
         testLayer = TestLayer(label: "t0", device: device, inputBatchSize: inputBatchSize, inputFeatureChannels: colorChannels, outputFeatureChannels: colorChannels)
@@ -83,14 +86,37 @@ final class SuperResolution {
 
         let buffer = queue.makeCommandBuffer()!
         let transformed = transformer.encodeInputTransform(to: buffer, source: image)
-        //let finalOutput = testLayer.encode(to: buffer, source: transformed)
         let outputH0 = hiddenLayer0.encode(to: buffer, source: transformed)
         let outputH1 = hiddenLayer1.encode(to: buffer, source: outputH0)
         let finalOutput = subpixelLayer.encode(to: buffer, source: outputH1)
         let converted = transformer.encodeOutputTransform(to: buffer, source: finalOutput)
 
         buffer.addCompletedHandler { _ in
-            //printImage(outputH1)
+            print("IN_R")
+            printImage(transformed, channel: 0)
+            print("IN_G")
+            printImage(transformed, channel: 1)
+            print("IN_B")
+            printImage(transformed, channel: 2)
+            print("H0_R")
+            printImage(outputH0, channel: 0)
+            print("H0_G")
+            printImage(outputH0, channel: 1)
+            print("H0_B")
+            printImage(outputH0, channel: 2)
+            print("H1_R")
+            printImage(outputH1, channel: 0)
+            print("H1_G")
+            printImage(outputH1, channel: 1)
+            print("H1_B")
+            printImage(outputH1, channel: 2)
+            print("H2_R")
+            printImage(finalOutput, channel: 0)
+            print("H2_G")
+            printImage(finalOutput, channel: 1)
+            print("H2_B")
+            printImage(finalOutput, channel: 2)
+
             completion(converted)
         }
 
@@ -114,7 +140,9 @@ extension Float {
     }
 }
 
-func printImage(_ transformed: MPSImage) {
+func printImage(_ transformed: MPSImage, channel: Int = 0) {
+    assert(transformed.pixelFormat == .rgba16Float)
+
     let input = UnsafeMutableRawPointer.allocate(bytes: transformed.width * transformed.height * 2 * 4,
                                                  alignedTo: 2)
     transformed.texture.getBytes(input, bytesPerRow: transformed.width * 8, from: MTLRegion(origin: MTLOrigin(x: 0, y: 0, z: 0), size: MTLSize(width: transformed.width, height: transformed.height, depth: 1)), mipmapLevel: 0)
@@ -129,9 +157,11 @@ func printImage(_ transformed: MPSImage) {
                              width: UInt(4 * transformed.width * transformed.height),
                              rowBytes: transformed.width * transformed.height * 4 * 4)
     assert(vImageConvert_Planar16FtoPlanarF(&src, &dest, 0) == kvImageNoError)
-    for i in 0 ..< (floats.count / 4) {
-        print("\(floats[i << 2]) \(floats[i << 2 + 1]) \(floats[i << 2 + 2]) \(floats[i << 2 + 3])")
+
+    for i in 0 ..< transformed.width {
+        print("\(floats[i * 4 + channel])", terminator: " ")
     }
+    print("")
 
     input.deallocate(bytes: transformed.width * transformed.height * 2 * transformed.featureChannels, alignedTo: 2)
 }

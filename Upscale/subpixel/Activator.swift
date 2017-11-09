@@ -34,6 +34,7 @@ final class Activator {
         assert(texture.textureType == .type2DArray)
 
         let encoder = commandBuffer.makeComputeCommandEncoder()!
+        encoder.setComputePipelineState(state)
         encoder.setTexture(texture, index: 0)
         encoder.useResource(texture, usage: [.read, .write])
 

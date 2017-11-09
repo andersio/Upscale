@@ -30,6 +30,40 @@
 		9A2588D01F6F91D000117855 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588CF1F6F91D000117855 /* CoreMedia.framework */; };
 		9A2588D11F6F924D00117855 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588CA1F6F917200117855 /* CoreVideo.framework */; };
 		9A2631091F8338A400BF3DE9 /* SuperResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2631081F8338A400BF3DE9 /* SuperResolution.swift */; };
+		9A4986041FB401890095EFBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4986031FB401890095EFBB /* AppDelegate.swift */; };
+		9A4986061FB401890095EFBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A4986051FB401890095EFBB /* Assets.xcassets */; };
+		9A4986091FB401890095EFBB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A4986071FB401890095EFBB /* MainMenu.xib */; };
+		9A4986241FB401A60095EFBB /* SuperResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2631081F8338A400BF3DE9 /* SuperResolution.swift */; };
+		9A4986251FB401A60095EFBB /* TransposedConvolutionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE101F8F595D007FFC61 /* TransposedConvolutionLayer.swift */; };
+		9A4986261FB401A60095EFBB /* SubpixelConvolutionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE0E1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift */; };
+		9A4986271FB401A60095EFBB /* Transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3452C1FA2366B0063ADF3 /* Transformer.swift */; };
+		9A4986281FB401A60095EFBB /* Activator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE121F8F597C007FFC61 /* Activator.swift */; };
+		9A4986291FB401A60095EFBB /* TestLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3452E1FA3017F0063ADF3 /* TestLayer.swift */; };
+		9A49862A1FB401A60095EFBB /* activators.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE0B1F8F37A7007FFC61 /* activators.metal */; };
+		9A49862B1FB401A60095EFBB /* test_shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B33571F78C0A4002E10BE /* test_shaders.metal */; };
+		9A49862C1FB401A60095EFBB /* transformer.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9AD345151FA233130063ADF3 /* transformer.metal */; };
+		9A49862D1FB401B90095EFBB /* w_h0 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE391F9076A3007FFC61 /* w_h0 */; };
+		9A49862E1FB401B90095EFBB /* w_h1 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3A1F9076A3007FFC61 /* w_h1 */; };
+		9A49862F1FB401B90095EFBB /* b_h2 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3B1F9076A3007FFC61 /* b_h2 */; };
+		9A4986301FB401B90095EFBB /* w_h2 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3C1F9076A3007FFC61 /* w_h2 */; };
+		9A4986311FB401B90095EFBB /* b_h1 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3D1F9076A3007FFC61 /* b_h1 */; };
+		9A4986321FB401B90095EFBB /* b_h0 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3E1F9076A3007FFC61 /* b_h0 */; };
+		9A4986341FB403B60095EFBB /* one_input.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4986331FB403B60095EFBB /* one_input.png */; };
+		9A4986371FB403E50095EFBB /* TestInferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4986361FB403E50095EFBB /* TestInferenceViewController.swift */; };
+		9A4986381FB4047C0095EFBB /* MetalCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2588C61F6F902A00117855 /* MetalCoordinator.swift */; };
+		9A4986391FB404990095EFBB /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A25889F1F6EBBB800117855 /* ReactiveCocoa.framework */; };
+		9A49863A1FB404990095EFBB /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9A25889F1F6EBBB800117855 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9A49863D1FB404990095EFBB /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A25886F1F6EBBB700117855 /* ReactiveSwift.framework */; };
+		9A49863E1FB404990095EFBB /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9A25886F1F6EBBB700117855 /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9A4986411FB404990095EFBB /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588871F6EBBB700117855 /* Result.framework */; };
+		9A4986421FB404990095EFBB /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588871F6EBBB700117855 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9A4986491FB410700095EFBB /* CGImage+MetalTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4986481FB410700095EFBB /* CGImage+MetalTexture.swift */; };
+		9A49864A1FB410700095EFBB /* CGImage+MetalTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4986481FB410700095EFBB /* CGImage+MetalTexture.swift */; };
+		9A49864B1FB4220E0095EFBB /* one_input.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4986331FB403B60095EFBB /* one_input.png */; };
+		9A49868E1FB467FD0095EFBB /* conv_transpose.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9A49868D1FB467FD0095EFBB /* conv_transpose.metal */; };
+		9A49868F1FB467FD0095EFBB /* conv_transpose.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9A49868D1FB467FD0095EFBB /* conv_transpose.metal */; };
+		9A49869E1FB46D060095EFBB /* TFModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A49869D1FB46D060095EFBB /* TFModel.mm */; };
+		9A4986B31FB491C80095EFBB /* in_test in Resources */ = {isa = PBXBuildFile; fileRef = 9A4986B21FB491C80095EFBB /* in_test */; };
 		9AC0FCF41FA715B700A35DF5 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0FCF31FA715B700A35DF5 /* UIImage+Resize.swift */; };
 		9AD345161FA233130063ADF3 /* transformer.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9AD345151FA233130063ADF3 /* transformer.metal */; };
 		9AD3452D1FA2366B0063ADF3 /* Transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3452C1FA2366B0063ADF3 /* Transformer.swift */; };
@@ -52,6 +86,7 @@
 		9AECFE711F907F9A007FFC61 /* InferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE701F907F9A007FFC61 /* InferenceViewController.swift */; };
 		9AECFE731F907FA6007FFC61 /* InferenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE721F907FA6007FFC61 /* InferenceViewModel.swift */; };
 		9AECFE751F907FD1007FFC61 /* ImageCropperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE741F907FD1007FFC61 /* ImageCropperViewModel.swift */; };
+		BE542E26D861F41E928513C3 /* libPods-Upscale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C506F5CB8F3804D1C47A0 /* libPods-Upscale.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,6 +258,27 @@
 			remoteGlobalIDString = D454807C1A957361009D7229;
 			remoteInfo = "Result-iOS";
 		};
+		9A49863B1FB404990095EFBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2588941F6EBBB700117855 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D04725E919E49ED7006002AA;
+			remoteInfo = "ReactiveCocoa-macOS";
+		};
+		9A49863F1FB404990095EFBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2588641F6EBBB600117855 /* ReactiveSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D04725E919E49ED7006002AA;
+			remoteInfo = "ReactiveSwift-macOS";
+		};
+		9A4986431FB404990095EFBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A25887C1F6EBBB700117855 /* Result.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D45480561A9572F5009D7229;
+			remoteInfo = "Result-Mac";
+		};
 		9AECFE5E1F907875007FFC61 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AECFE571F907874007FFC61 /* TOCropViewControllerExample.xcodeproj */;
@@ -275,9 +331,24 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9A4986451FB404990095EFBB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9A4986421FB404990095EFBB /* Result.framework in Embed Frameworks */,
+				9A49863A1FB404990095EFBB /* ReactiveCocoa.framework in Embed Frameworks */,
+				9A49863E1FB404990095EFBB /* ReactiveSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0D9C506F5CB8F3804D1C47A0 /* libPods-Upscale.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Upscale.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3599CD1B0B7D69807F1D03B9 /* Pods-Upscale.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Upscale.release.xcconfig"; path = "Pods/Target Support Files/Pods-Upscale/Pods-Upscale.release.xcconfig"; sourceTree = "<group>"; };
 		9A0B33571F78C0A4002E10BE /* test_shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = test_shaders.metal; sourceTree = "<group>"; };
 		9A2588641F6EBBB600117855 /* ReactiveSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveSwift.xcodeproj; path = Carthage/Checkouts/ReactiveSwift/ReactiveSwift.xcodeproj; sourceTree = "<group>"; };
 		9A25887C1F6EBBB700117855 /* Result.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Result.xcodeproj; path = Carthage/Checkouts/Result/Result.xcodeproj; sourceTree = "<group>"; };
@@ -293,6 +364,22 @@
 		9A2588CA1F6F917200117855 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		9A2588CF1F6F91D000117855 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		9A2631081F8338A400BF3DE9 /* SuperResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperResolution.swift; sourceTree = "<group>"; };
+		9A4986011FB401890095EFBB /* UpscaleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UpscaleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A4986031FB401890095EFBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9A4986051FB401890095EFBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9A4986081FB401890095EFBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		9A49860A1FB401890095EFBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A49860B1FB401890095EFBB /* UpscaleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UpscaleApp.entitlements; sourceTree = "<group>"; };
+		9A4986331FB403B60095EFBB /* one_input.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = one_input.png; sourceTree = "<group>"; };
+		9A4986361FB403E50095EFBB /* TestInferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestInferenceViewController.swift; sourceTree = "<group>"; };
+		9A4986461FB404A10095EFBB /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
+		9A4986471FB404A10095EFBB /* MetalPerformanceShaders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalPerformanceShaders.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/MetalPerformanceShaders.framework; sourceTree = DEVELOPER_DIR; };
+		9A4986481FB410700095EFBB /* CGImage+MetalTexture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage+MetalTexture.swift"; sourceTree = "<group>"; };
+		9A49868D1FB467FD0095EFBB /* conv_transpose.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = conv_transpose.metal; sourceTree = "<group>"; };
+		9A49869C1FB46D060095EFBB /* Upscale-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Upscale-Bridging-Header.h"; sourceTree = "<group>"; };
+		9A49869D1FB46D060095EFBB /* TFModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TFModel.mm; sourceTree = "<group>"; };
+		9A4986B11FB46D1B0095EFBB /* TFModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFModel.h; sourceTree = "<group>"; };
+		9A4986B21FB491C80095EFBB /* in_test */ = {isa = PBXFileReference; lastKnownFileType = file; name = in_test; path = ../../subpixel/samples/in_test; sourceTree = "<group>"; };
 		9A8D06DE1F670BC000CCB651 /* Upscale.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Upscale.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8D06E11F670BC000CCB651 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A8D06E31F670BC000CCB651 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -321,9 +408,20 @@
 		9AECFE701F907F9A007FFC61 /* InferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceViewController.swift; sourceTree = "<group>"; };
 		9AECFE721F907FA6007FFC61 /* InferenceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceViewModel.swift; sourceTree = "<group>"; };
 		9AECFE741F907FD1007FFC61 /* ImageCropperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropperViewModel.swift; sourceTree = "<group>"; };
+		B46BC32EE250CDF542AC2938 /* Pods-Upscale.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Upscale.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Upscale/Pods-Upscale.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9A4985FE1FB401890095EFBB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A4986411FB404990095EFBB /* Result.framework in Frameworks */,
+				9A4986391FB404990095EFBB /* ReactiveCocoa.framework in Frameworks */,
+				9A49863D1FB404990095EFBB /* ReactiveSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A8D06DB1F670BC000CCB651 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -338,6 +436,7 @@
 				9A2588B41F6EBBC700117855 /* Result.framework in Frameworks */,
 				9A2588AC1F6EBBC700117855 /* ReactiveCocoa.framework in Frameworks */,
 				9A2588B01F6EBBC700117855 /* ReactiveSwift.framework in Frameworks */,
+				BE542E26D861F41E928513C3 /* libPods-Upscale.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,9 +446,10 @@
 		9A0B33421F78C081002E10BE /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				9AD345151FA233130063ADF3 /* transformer.metal */,
 				9AECFE0B1F8F37A7007FFC61 /* activators.metal */,
 				9A0B33571F78C0A4002E10BE /* test_shaders.metal */,
-				9AD345151FA233130063ADF3 /* transformer.metal */,
+				9A49868D1FB467FD0095EFBB /* conv_transpose.metal */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -410,12 +510,15 @@
 		9A2588B81F6EBBD000117855 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A4986461FB404A10095EFBB /* Metal.framework */,
+				9A4986471FB404A10095EFBB /* MetalPerformanceShaders.framework */,
 				9A2588CF1F6F91D000117855 /* CoreMedia.framework */,
 				9A2588CA1F6F917200117855 /* CoreVideo.framework */,
 				9A2588C81F6F916D00117855 /* AVFoundation.framework */,
 				9A2588B91F6EBBD100117855 /* Metal.framework */,
 				9A2588BA1F6EBBD100117855 /* MetalKit.framework */,
 				9A2588BB1F6EBBD100117855 /* MetalPerformanceShaders.framework */,
+				0D9C506F5CB8F3804D1C47A0 /* libPods-Upscale.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -433,13 +536,28 @@
 			path = subpixel;
 			sourceTree = "<group>";
 		};
+		9A4986021FB401890095EFBB /* UpscaleApp */ = {
+			isa = PBXGroup;
+			children = (
+				9A4986361FB403E50095EFBB /* TestInferenceViewController.swift */,
+				9A4986031FB401890095EFBB /* AppDelegate.swift */,
+				9A4986051FB401890095EFBB /* Assets.xcassets */,
+				9A4986071FB401890095EFBB /* MainMenu.xib */,
+				9A49860A1FB401890095EFBB /* Info.plist */,
+				9A49860B1FB401890095EFBB /* UpscaleApp.entitlements */,
+			);
+			path = UpscaleApp;
+			sourceTree = "<group>";
+		};
 		9A8D06D51F670BC000CCB651 = {
 			isa = PBXGroup;
 			children = (
 				9A2588631F6EBB9B00117855 /* Dependencies */,
 				9A8D06E01F670BC000CCB651 /* Upscale */,
+				9A4986021FB401890095EFBB /* UpscaleApp */,
 				9A8D06DF1F670BC000CCB651 /* Products */,
 				9A2588B81F6EBBD000117855 /* Frameworks */,
+				AAC44DAA0B05B40CF8C773F7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -447,6 +565,7 @@
 			isa = PBXGroup;
 			children = (
 				9A8D06DE1F670BC000CCB651 /* Upscale.app */,
+				9A4986011FB401890095EFBB /* UpscaleApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -454,6 +573,8 @@
 		9A8D06E01F670BC000CCB651 /* Upscale */ = {
 			isa = PBXGroup;
 			children = (
+				9A4986331FB403B60095EFBB /* one_input.png */,
+				9A4986B21FB491C80095EFBB /* in_test */,
 				9AECFE381F9076A3007FFC61 /* AvatarWeights */,
 				9A2630F51F83389600BF3DE9 /* subpixel */,
 				9A0B33421F78C081002E10BE /* Shaders */,
@@ -474,6 +595,10 @@
 				9A2588C41F6F837F00117855 /* CameraSource.swift */,
 				9A2588C61F6F902A00117855 /* MetalCoordinator.swift */,
 				9AC0FCF31FA715B700A35DF5 /* UIImage+Resize.swift */,
+				9A4986481FB410700095EFBB /* CGImage+MetalTexture.swift */,
+				9A49869D1FB46D060095EFBB /* TFModel.mm */,
+				9A4986B11FB46D1B0095EFBB /* TFModel.h */,
+				9A49869C1FB46D060095EFBB /* Upscale-Bridging-Header.h */,
 			);
 			path = Upscale;
 			sourceTree = "<group>";
@@ -502,17 +627,50 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AAC44DAA0B05B40CF8C773F7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B46BC32EE250CDF542AC2938 /* Pods-Upscale.debug.xcconfig */,
+				3599CD1B0B7D69807F1D03B9 /* Pods-Upscale.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9A4986001FB401890095EFBB /* UpscaleApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A4986231FB401890095EFBB /* Build configuration list for PBXNativeTarget "UpscaleApp" */;
+			buildPhases = (
+				9A4985FD1FB401890095EFBB /* Sources */,
+				9A4985FE1FB401890095EFBB /* Frameworks */,
+				9A4985FF1FB401890095EFBB /* Resources */,
+				9A4986451FB404990095EFBB /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A49863C1FB404990095EFBB /* PBXTargetDependency */,
+				9A4986401FB404990095EFBB /* PBXTargetDependency */,
+				9A4986441FB404990095EFBB /* PBXTargetDependency */,
+			);
+			name = UpscaleApp;
+			productName = UpscaleApp;
+			productReference = 9A4986011FB401890095EFBB /* UpscaleApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 		9A8D06DD1F670BC000CCB651 /* Upscale */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A8D06F01F670BC000CCB651 /* Build configuration list for PBXNativeTarget "Upscale" */;
 			buildPhases = (
+				DBE11DD60C7AE611BC09DE1C /* [CP] Check Pods Manifest.lock */,
 				9A8D06DA1F670BC000CCB651 /* Sources */,
 				9A8D06DB1F670BC000CCB651 /* Frameworks */,
 				9A8D06DC1F670BC000CCB651 /* Resources */,
 				9A2587D91F6EB94400117855 /* Embed Frameworks */,
+				BF9548A2CE74343E98DD09BC /* [CP] Embed Pods Frameworks */,
+				A68F8676260266F81DC91D83 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -533,13 +691,18 @@
 		9A8D06D61F670BC000CCB651 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0910;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Anders Ha";
 				TargetAttributes = {
+					9A4986001FB401890095EFBB = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
 					9A8D06DD1F670BC000CCB651 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 5FQJ4FWHM9;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -576,6 +739,7 @@
 			projectRoot = "";
 			targets = (
 				9A8D06DD1F670BC000CCB651 /* Upscale */,
+				9A4986001FB401890095EFBB /* UpscaleApp */,
 			);
 		};
 /* End PBXProject section */
@@ -759,6 +923,22 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9A4985FF1FB401890095EFBB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A4986301FB401B90095EFBB /* w_h2 in Resources */,
+				9A4986061FB401890095EFBB /* Assets.xcassets in Resources */,
+				9A4986311FB401B90095EFBB /* b_h1 in Resources */,
+				9A4986091FB401890095EFBB /* MainMenu.xib in Resources */,
+				9A49862D1FB401B90095EFBB /* w_h0 in Resources */,
+				9A4986321FB401B90095EFBB /* b_h0 in Resources */,
+				9A49862E1FB401B90095EFBB /* w_h1 in Resources */,
+				9A4986341FB403B60095EFBB /* one_input.png in Resources */,
+				9A49862F1FB401B90095EFBB /* b_h2 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A8D06DC1F670BC000CCB651 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -770,13 +950,87 @@
 				9AECFE511F9076A3007FFC61 /* w_h0 in Resources */,
 				9AECFE561F9076A3007FFC61 /* b_h0 in Resources */,
 				9AECFE521F9076A3007FFC61 /* w_h1 in Resources */,
+				9A4986B31FB491C80095EFBB /* in_test in Resources */,
+				9A49864B1FB4220E0095EFBB /* one_input.png in Resources */,
 				9AECFE531F9076A3007FFC61 /* b_h2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A68F8676260266F81DC91D83 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Upscale/Pods-Upscale-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF9548A2CE74343E98DD09BC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Upscale/Pods-Upscale-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DBE11DD60C7AE611BC09DE1C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Upscale-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		9A4985FD1FB401890095EFBB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A4986041FB401890095EFBB /* AppDelegate.swift in Sources */,
+				9A49862C1FB401A60095EFBB /* transformer.metal in Sources */,
+				9A4986371FB403E50095EFBB /* TestInferenceViewController.swift in Sources */,
+				9A49862A1FB401A60095EFBB /* activators.metal in Sources */,
+				9A49864A1FB410700095EFBB /* CGImage+MetalTexture.swift in Sources */,
+				9A49868F1FB467FD0095EFBB /* conv_transpose.metal in Sources */,
+				9A4986381FB4047C0095EFBB /* MetalCoordinator.swift in Sources */,
+				9A4986281FB401A60095EFBB /* Activator.swift in Sources */,
+				9A4986251FB401A60095EFBB /* TransposedConvolutionLayer.swift in Sources */,
+				9A4986261FB401A60095EFBB /* SubpixelConvolutionLayer.swift in Sources */,
+				9A4986271FB401A60095EFBB /* Transformer.swift in Sources */,
+				9A4986241FB401A60095EFBB /* SuperResolution.swift in Sources */,
+				9A4986291FB401A60095EFBB /* TestLayer.swift in Sources */,
+				9A49862B1FB401A60095EFBB /* test_shaders.metal in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A8D06DA1F670BC000CCB651 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -790,14 +1044,17 @@
 				9AECFE0D1F8F4A8E007FFC61 /* activators.metal in Sources */,
 				9AD345161FA233130063ADF3 /* transformer.metal in Sources */,
 				9A2588C21F6EC3A500117855 /* ViewportLabel.swift in Sources */,
+				9A49869E1FB46D060095EFBB /* TFModel.mm in Sources */,
 				9A2588C01F6EBBF000117855 /* RootViewModel.swift in Sources */,
 				9AECFE131F8F597C007FFC61 /* Activator.swift in Sources */,
 				9A2587DC1F6EBA8600117855 /* RootBuilder.swift in Sources */,
 				9AECFE6F1F907F07007FFC61 /* Operators.swift in Sources */,
 				9AECFE731F907FA6007FFC61 /* InferenceViewModel.swift in Sources */,
+				9A49868E1FB467FD0095EFBB /* conv_transpose.metal in Sources */,
 				9A2631091F8338A400BF3DE9 /* SuperResolution.swift in Sources */,
 				9A2588C51F6F837F00117855 /* CameraSource.swift in Sources */,
 				9AECFE6D1F907C06007FFC61 /* ImageCropperViewController.swift in Sources */,
+				9A4986491FB410700095EFBB /* CGImage+MetalTexture.swift in Sources */,
 				9AECFE711F907F9A007FFC61 /* InferenceViewController.swift in Sources */,
 				9AECFE0F1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift in Sources */,
 				9AECFE111F8F595D007FFC61 /* TransposedConvolutionLayer.swift in Sources */,
@@ -825,6 +1082,21 @@
 			name = "Result-iOS";
 			targetProxy = 9A2588B61F6EBBC700117855 /* PBXContainerItemProxy */;
 		};
+		9A49863C1FB404990095EFBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ReactiveCocoa-macOS";
+			targetProxy = 9A49863B1FB404990095EFBB /* PBXContainerItemProxy */;
+		};
+		9A4986401FB404990095EFBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ReactiveSwift-macOS";
+			targetProxy = 9A49863F1FB404990095EFBB /* PBXContainerItemProxy */;
+		};
+		9A4986441FB404990095EFBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Result-Mac";
+			targetProxy = 9A4986431FB404990095EFBB /* PBXContainerItemProxy */;
+		};
 		9AECFE691F90787C007FFC61 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = TOCropViewController;
@@ -833,6 +1105,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9A4986071FB401890095EFBB /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A4986081FB401890095EFBB /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		9A8D06EA1F670BC000CCB651 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -844,6 +1124,62 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9A49860C1FB401890095EFBB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = UpscaleApp/UpscaleApp.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = UpscaleApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andersha.UpscaleApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		9A49860D1FB401890095EFBB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = UpscaleApp/UpscaleApp.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = UpscaleApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andersha.UpscaleApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 		9A8D06EE1F670BC000CCB651 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -939,9 +1275,11 @@
 		};
 		9A8D06F11F670BC000CCB651 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B46BC32EE250CDF542AC2938 /* Pods-Upscale.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5FQJ4FWHM9;
@@ -950,15 +1288,19 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.andersha.Upscale;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Upscale/Upscale-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		9A8D06F21F670BC000CCB651 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3599CD1B0B7D69807F1D03B9 /* Pods-Upscale.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5FQJ4FWHM9;
@@ -967,6 +1309,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.andersha.Upscale;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Upscale/Upscale-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
@@ -974,6 +1317,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9A4986231FB401890095EFBB /* Build configuration list for PBXNativeTarget "UpscaleApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A49860C1FB401890095EFBB /* Debug */,
+				9A49860D1FB401890095EFBB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9A8D06D91F670BC000CCB651 /* Build configuration list for PBXProject "Upscale" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

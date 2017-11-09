@@ -3,24 +3,48 @@ import Metal
 
 final class Transformer {
     private let device: MTLDevice
-    private let inputState: MTLComputePipelineState
+    private let unormInputState: MTLComputePipelineState
+    private let f32InputState: MTLComputePipelineState
     private let outputState: MTLComputePipelineState
 
-    init(device: MTLDevice, library: MTLLibrary) throws {
+    private let finalFeatureChannels: Int
+    private let scaleFactor: Int
+
+    init(device: MTLDevice, library: MTLLibrary, finalFeatureChannels: Int, scaleFactor: Int) throws {
         self.device = device
+        self.finalFeatureChannels = finalFeatureChannels
+        self.scaleFactor = scaleFactor
+
+        assert(finalFeatureChannels % 3 == 0 && (finalFeatureChannels / 3) % scaleFactor == 0)
+        var r = Int(exactly: sqrt(Double(finalFeatureChannels / 3)))!
 
         let function = library.makeFunction(name: "input_transformer")!
-        inputState = try device.makeComputePipelineState(function: function)
-        
-        let function2 = library.makeFunction(name: "output_transformer")!
+        unormInputState = try device.makeComputePipelineState(function: function)
+
+        let function3 = library.makeFunction(name: "input_transformer_f32")!
+        f32InputState = try device.makeComputePipelineState(function: function3)
+
+        let values = MTLFunctionConstantValues()
+        values.setConstantValue(&r, type: .int, index: 0)
+        let function2 = try! library.makeFunction(name: "output_transformer",
+                                                  constantValues: values)
         outputState = try device.makeComputePipelineState(function: function2)
     }
 
     func encodeInputTransform(to commandBuffer: MTLCommandBuffer, source: MPSImage) -> MPSImage {
-        assert(source.texture.pixelFormat == .bgra8Unorm)
+        let state: MTLComputePipelineState
+
+        switch source.texture.pixelFormat {
+        case .bgra8Unorm:
+            state = unormInputState
+        case .rgba32Float:
+            state = f32InputState
+        default:
+            fatalError()
+        }
 
         let encoder = commandBuffer.makeComputeCommandEncoder()!
-        encoder.setComputePipelineState(inputState)
+        encoder.setComputePipelineState(state)
         
         encoder.setTexture(source.texture, index: 0)
         encoder.useResource(source.texture, usage: [.read])
@@ -32,8 +56,8 @@ final class Transformer {
         encoder.setTexture(output.texture, index: 1)
         encoder.useResource(output.texture, usage: [.write])
 
-        let threadGroupSize = MTLSizeMake(inputState.threadExecutionWidth,
-                                          inputState.maxTotalThreadsPerThreadgroup / inputState.threadExecutionWidth,
+        let threadGroupSize = MTLSizeMake(state.threadExecutionWidth,
+                                          state.maxTotalThreadsPerThreadgroup / state.threadExecutionWidth,
                                           1)
         encoder.dispatchThreads(MTLSizeMake(descriptor.width, descriptor.height, 1),
                                 threadsPerThreadgroup: threadGroupSize)
@@ -43,29 +67,20 @@ final class Transformer {
     }
     
     func encodeOutputTransform(to commandBuffer: MTLCommandBuffer, source: MPSImage, slice: Int = 0) -> MPSImage {
-        assert(source.texture.pixelFormat == .rgba16Float)
-        
-        let sourceTexture: MTLTexture
-        
-        if source.textureType == .type2D {
-            sourceTexture = source.texture
-        } else {
-            sourceTexture = source.texture.makeTextureView(pixelFormat: .rgba16Float,
-                                                           textureType: .type2D,
-                                                           levels: 0 ..< 1,
-                                                           slices: slice ..< slice + 1)!
-        }
+        assert(source.pixelFormat == .rgba16Float
+            && source.featureChannels == finalFeatureChannels
+            && source.textureType == .type2DArray)
         
         let encoder = commandBuffer.makeComputeCommandEncoder()!
         encoder.setComputePipelineState(outputState)
-        
-        encoder.setTexture(sourceTexture, index: 0)
-        encoder.useResource(sourceTexture, usage: [.read])
+
+        encoder.setTexture(source.texture, index: 0)
+        encoder.useResource(source.texture, usage: [.read])
         
         let descriptor = MTLTextureDescriptor()
         descriptor.pixelFormat = .rgba8Unorm
-        descriptor.width = source.width
-        descriptor.height = source.height
+        descriptor.width = source.width * scaleFactor
+        descriptor.height = source.height * scaleFactor
         descriptor.usage = [.shaderWrite, .shaderRead]
         
         let output = device.makeTexture(descriptor: descriptor)!
@@ -75,10 +90,12 @@ final class Transformer {
         let threadGroupSize = MTLSizeMake(outputState.threadExecutionWidth,
                                           outputState.maxTotalThreadsPerThreadgroup / outputState.threadExecutionWidth,
                                           1)
-        encoder.dispatchThreads(MTLSizeMake(descriptor.width, descriptor.height, 1),
+        encoder.dispatchThreads(MTLSizeMake(source.width, source.height, 1),
                                 threadsPerThreadgroup: threadGroupSize)
         encoder.endEncoding()
-        
+
+        (source as? MPSTemporaryImage)?.readCount -= 1
+
         return MPSImage(texture: output, featureChannels: 3)
     }
 }

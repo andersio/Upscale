@@ -1,7 +1,6 @@
 import AVFoundation
 import CoreMedia
 import Metal
-import MetalKit
 import MetalPerformanceShaders
 import ReactiveSwift
 import Result
@@ -17,14 +16,12 @@ final class MetalCoordinator: Renderer {
 
     let superResolution: SuperResolution
 
-    private let cameraSource: CameraSource
     private let library: MTLLibrary
     private let pipelineState: MTLRenderPipelineState
     private let textureCache: CVMetalTextureCache
     private var texture: MTLTexture?
 
-    init(cameraSource: CameraSource) {
-        self.cameraSource = cameraSource
+    init() {
         device = MTLCreateSystemDefaultDevice()!
 
         var cache: CVMetalTextureCache?
@@ -57,10 +54,6 @@ final class MetalCoordinator: Renderer {
                                                colorChannels: 3,
                                                featureChannels: 64,
                                                weights: descriptor)
-
-        cameraSource
-            .samples
-            .observeValues { [weak self] in self?.handle($0) }
     }
 
     func draw(to drawable: MTLDrawable, using descriptor: MTLRenderPassDescriptor) {

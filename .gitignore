@@ -20,4 +20,5 @@ PlaygroundUtility.remap
 *.xcscmblueprint
 
 # Carthage
+Pods/
 Carthage/

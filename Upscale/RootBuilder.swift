@@ -42,7 +42,7 @@ struct RootBuilder {
     func make(cameraSource: CameraSource) -> UIViewController {
         let navigationController = UINavigationController()
         let viewModel = RootViewModel(cameraSource: cameraSource)
-        let renderer = MetalCoordinator(cameraSource: cameraSource)
+        let renderer = MetalCoordinator()
         let rootViewController = RootViewController(viewModel: viewModel, renderer: renderer)
         navigationController.setViewControllers([rootViewController], animated: false)
 
@@ -51,6 +51,10 @@ struct RootBuilder {
         viewModel.events
             .observe(on: UIScheduler())
             .observeValues(flowController.route(for:))
+
+        cameraSource
+            .samples
+            .observeValues { [weak renderer] in renderer?.handle($0) }
 
         return navigationController
     }

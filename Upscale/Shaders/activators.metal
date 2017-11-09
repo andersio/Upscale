@@ -12,7 +12,7 @@ kernel void activator_leaky_relu(texture2d_array<float, access::read_write> valu
     float4 value = values.read(position.xy, position.z);
     float4 f1 = 0.5 * (1 + leak);
     float4 f2 = 0.5 * (1 - leak);
-    float4 result = f1 * value + f2 * abs(value);
+    float4 result = f1 * value + f2 * fabs(value);
     values.write(result, position.xy, position.z);
 }
 

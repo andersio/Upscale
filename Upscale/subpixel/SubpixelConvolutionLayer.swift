@@ -2,8 +2,8 @@ import MetalPerformanceShaders
 import Metal
 
 final class SubpixelConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
-    private var kernel: MPSCNNConvolution!
-    private let _descriptor: MPSCNNSubPixelConvolutionDescriptor
+    private var kernel: MPSCNNConvolutionTranspose!
+    private let _descriptor: MPSCNNConvolutionDescriptor
 
     private let numberOfWeights: Int
     private let outputFeatureChannels: Int
@@ -23,22 +23,21 @@ final class SubpixelConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
         self.weightsUrl = weights
         self.biasUrl = bias
 
-        _descriptor = MPSCNNSubPixelConvolutionDescriptor()
-        _descriptor.kernelWidth = kernelSize.width
-        _descriptor.kernelHeight = kernelSize.height
+        _descriptor = MPSCNNConvolutionDescriptor(kernelWidth: kernelSize.width,
+                                                  kernelHeight: kernelSize.height,
+                                                  inputFeatureChannels: inputFeatureChannels,
+                                                  outputFeatureChannels: outputColorChannels * subpixelScale * subpixelScale)
         _descriptor.groups = inputBatchSize
-        _descriptor.inputFeatureChannels = inputFeatureChannels
-        _descriptor.outputFeatureChannels = outputColorChannels * subpixelScale * subpixelScale
-        _descriptor.subPixelScaleFactor = subpixelScale
-        _descriptor.setNeuronType(.tanH, parameterA: 1.0, parameterB: 1.0)
+        //_descriptor.subPixelScaleFactor = subpixelScale
+        _descriptor.setNeuronType(.none, parameterA: 1.0, parameterB: 1.0)
 
         super.init()
-        kernel = MPSCNNConvolution(device: device, weights: self)
+        kernel = MPSCNNConvolutionTranspose(device: device, weights: self)
         kernel.destinationImageAllocator = MPSImage.defaultAllocator()
     }
 
     func encode(to commandBuffer: MTLCommandBuffer, source: MPSImage) -> MPSImage {
-        return kernel.encode(commandBuffer: commandBuffer, sourceImage: source)
+        return kernel.encode(commandBuffer: commandBuffer, sourceImage: source, convolutionState: nil)
     }
 
     func biasTerms() -> UnsafeMutablePointer<Float>? {
@@ -71,21 +70,7 @@ final class SubpixelConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
         assert(copiedBiasBytes == outputFeatureChannels * MemoryLayout<Float>.size)
 
         weights.withUnsafeBytes { (weights: UnsafePointer<Float>) in
-            let numberOfWeightsPerOutput = numberOfWeights / outputFeatureChannels
-
-            for outputIndex in 0 ..< outputFeatureChannels {
-                var sum = Float(0.0)
-
-                for weightIndex in 0 ..< numberOfWeightsPerOutput {
-                    let index = outputIndex * numberOfWeightsPerOutput + weightIndex
-                    sum += weights[index]
-                }
-
-                for weightIndex in 0 ..< numberOfWeightsPerOutput {
-                    let index = outputIndex * numberOfWeightsPerOutput + weightIndex
-                    weightsBuffer![index] = weights[index] / sum
-                }
-            }
+            weightsBuffer?.assign(from: weights, count: numberOfWeights)
         }
 
         return true

@@ -37,6 +37,8 @@ class InferenceViewController: UIViewController {
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            imageView.widthAnchor.constraint(equalToConstant: 256.0),
+            imageView.heightAnchor.constraint(equalToConstant: 256.0),
             activityIndicator.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
