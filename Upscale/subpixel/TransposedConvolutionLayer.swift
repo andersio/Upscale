@@ -33,7 +33,7 @@ final class TransposedConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
                                                   inputFeatureChannels: inputFeatureChannels,
                                                   outputFeatureChannels: outputFeatureChannels)
         _descriptor.groups = inputBatchSize
-        _descriptor.setNeuronType(.reLU, parameterA: 0.2, parameterB: 1.0)
+        _descriptor.setNeuronType(.none, parameterA: 1.0, parameterB: 1.0)
 
         super.init()
         kernel = MPSCNNConvolutionTranspose(device: device, weights: self)
@@ -76,11 +76,11 @@ final class TransposedConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
             && weights.count == numberOfWeights * MemoryLayout<Float>.size)
         let copiedBiasBytes = bias.copyBytes(to: UnsafeMutableBufferPointer(start: biasBuffer!, count: outputFeatureChannels))
         assert(copiedBiasBytes == outputFeatureChannels * MemoryLayout<Float>.size)
-
+/*
         let copiedWeightBytes = weights.copyBytes(to: UnsafeMutableBufferPointer(start: weightsBuffer!, count: numberOfWeights))
         assert(copiedWeightBytes == numberOfWeights * MemoryLayout<Float>.size)
+*/
 
-/*
         weights.withUnsafeBytes { (weights: UnsafePointer<Float>) in
             let _1 = numberOfWeights / outputFeatureChannels
 
@@ -94,12 +94,12 @@ final class TransposedConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
                     let p1 = p0 + inputFeatureChannels
                     let p3 = (kernelSize - p) * inputFeatureChannels
                     let p2 = p3 - inputFeatureChannels
-                    UnsafeMutableBufferPointer(rebasing: dest[p0 ..< p1])
+                    _ = UnsafeMutableBufferPointer(rebasing: dest[p0 ..< p1])
                         .initialize(from: source[p2 ..< p3])
                 }
             }
         }
-*/
+
         let formatter = NumberFormatter()
         formatter.numberStyle = .scientific
 /*

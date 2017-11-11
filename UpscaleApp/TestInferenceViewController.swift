@@ -7,11 +7,13 @@ class TestInferenceViewController: NSViewController {
     let coordinator: MetalCoordinator
     let original: NSImageView
     let inferred: NSImageView
+    let inferredCPU: NSImageView
 
     init() {
         coordinator = MetalCoordinator()
         original = NSImageView()
         inferred = NSImageView()
+        inferredCPU = NSImageView()
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -29,24 +31,31 @@ class TestInferenceViewController: NSViewController {
 
         view.addSubview(original)
         view.addSubview(inferred)
+        view.addSubview(inferredCPU)
 
         original.translatesAutoresizingMaskIntoConstraints = false
         inferred.translatesAutoresizingMaskIntoConstraints = false
+        inferredCPU.translatesAutoresizingMaskIntoConstraints = false
 
         original.imageScaling = .scaleAxesIndependently
         inferred.imageScaling = .scaleAxesIndependently
+        inferredCPU.imageScaling = .scaleAxesIndependently
 
         NSLayoutConstraint.activate([
             original.widthAnchor.constraint(equalToConstant: 256),
             original.heightAnchor.constraint(equalToConstant: 256),
             inferred.widthAnchor.constraint(equalToConstant: 256),
             inferred.heightAnchor.constraint(equalToConstant: 256),
+            inferredCPU.widthAnchor.constraint(equalToConstant: 256),
+            inferredCPU.heightAnchor.constraint(equalToConstant: 256),
             original.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             original.trailingAnchor.constraint(equalTo: inferred.leadingAnchor, constant: 10),
-            inferred.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            inferred.trailingAnchor.constraint(equalTo: inferredCPU.leadingAnchor, constant: 10),
+            inferredCPU.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             original.topAnchor.constraint(equalTo: view.topAnchor),
             original.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            inferred.centerYAnchor.constraint(equalTo: original.centerYAnchor)
+            inferred.centerYAnchor.constraint(equalTo: original.centerYAnchor),
+            inferred.centerYAnchor.constraint(equalTo: inferredCPU.centerYAnchor)
         ])
 
         let image = NSImage(contentsOf: Bundle.main.url(forResource: "one_input", withExtension: "png")!)!
@@ -75,6 +84,10 @@ class TestInferenceViewController: NSViewController {
                                               size: NSSize(width: result.width, height: result.height))
             }
         }
+
+        let cpuImage = coordinator.superResolution.cpuInfer()
+        inferredCPU.image = NSImage(cgImage: CIContext().createCGImage(cpuImage, from: CGRect(x: 0, y: 0, width: 128, height: 128))!,
+                                    size: NSSize(width: 128, height: 128))
     }
 }
 

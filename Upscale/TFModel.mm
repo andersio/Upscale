@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "Upscale-Bridging-Header.h"
 #include "tensorflow/core/public/session.h"
+#include "tensorflow/core/public/session.h"
 
 @implementation TFModel: NSObject
 tensorflow::Session *session;
