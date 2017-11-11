@@ -77,6 +77,10 @@ final class TransposedConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
         let copiedBiasBytes = bias.copyBytes(to: UnsafeMutableBufferPointer(start: biasBuffer!, count: outputFeatureChannels))
         assert(copiedBiasBytes == outputFeatureChannels * MemoryLayout<Float>.size)
 
+        let copiedWeightBytes = weights.copyBytes(to: UnsafeMutableBufferPointer(start: weightsBuffer!, count: numberOfWeights))
+        assert(copiedWeightBytes == numberOfWeights * MemoryLayout<Float>.size)
+
+/*
         weights.withUnsafeBytes { (weights: UnsafePointer<Float>) in
             let _1 = numberOfWeights / outputFeatureChannels
 
@@ -95,7 +99,7 @@ final class TransposedConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
                 }
             }
         }
-
+*/
         let formatter = NumberFormatter()
         formatter.numberStyle = .scientific
 /*

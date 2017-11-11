@@ -25,7 +25,7 @@ final class SuperResolution {
     let testLayer: TestLayer
     let hiddenLayer0: TransposedConvolutionLayer
     let hiddenLayer1: TransposedConvolutionLayer
-    let subpixelLayer: SubpixelConvolutionLayer
+    let subpixelLayer: TransposedConvolutionLayer
     let activator: Activator
 
     init(
@@ -71,14 +71,14 @@ final class SuperResolution {
                                                   bias: weights!.hiddenLayer1Bias)
 
         // Subpixel Convolution Layer
-        subpixelLayer = SubpixelConvolutionLayer(device: device,
-                                                 kernelSize: (5, 5),
-                                                 inputBatchSize: inputBatchSize,
-                                                 inputFeatureChannels: featureChannels,
-                                                 subpixelScale: subpixelScale,
-                                                 outputColorChannels: colorChannels,
-                                                 weights: weights!.subpixelLayerWeight,
-                                                 bias: weights!.subpixelLayerBias)
+        subpixelLayer = TransposedConvolutionLayer(label: "h2",
+                                                   device: device,
+                                                   kernelSize: (5, 5),
+                                                   inputBatchSize: inputBatchSize,
+                                                   inputFeatureChannels: featureChannels,
+                                                   outputFeatureChannels: 48,
+                                                   weights: weights!.subpixelLayerWeight,
+                                                   bias: weights!.subpixelLayerBias)
     }
 
     func infer(_ image: MPSImage, completion: @escaping (MPSImage) -> Void) {
@@ -90,6 +90,14 @@ final class SuperResolution {
         let outputH1 = hiddenLayer1.encode(to: buffer, source: outputH0)
         let finalOutput = subpixelLayer.encode(to: buffer, source: outputH1)
         let converted = transformer.encodeOutputTransform(to: buffer, source: finalOutput)
+
+        let encoder = buffer.makeBlitCommandEncoder()!
+        encoder.synchronize(resource: transformed.texture)
+        encoder.synchronize(resource: outputH0.texture)
+        encoder.synchronize(resource: outputH1.texture)
+        encoder.synchronize(resource: finalOutput.texture)
+        encoder.synchronize(resource: converted.texture)
+        encoder.endEncoding()
 
         buffer.addCompletedHandler { _ in
             print("IN_R")

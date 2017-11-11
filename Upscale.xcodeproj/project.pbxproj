@@ -30,6 +30,7 @@
 		9A2588D01F6F91D000117855 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588CF1F6F91D000117855 /* CoreMedia.framework */; };
 		9A2588D11F6F924D00117855 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588CA1F6F917200117855 /* CoreVideo.framework */; };
 		9A2631091F8338A400BF3DE9 /* SuperResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2631081F8338A400BF3DE9 /* SuperResolution.swift */; };
+		9A46A2DC1FB700AE007480FF /* in_test in Resources */ = {isa = PBXBuildFile; fileRef = 9A4986B21FB491C80095EFBB /* in_test */; };
 		9A4986041FB401890095EFBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4986031FB401890095EFBB /* AppDelegate.swift */; };
 		9A4986061FB401890095EFBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A4986051FB401890095EFBB /* Assets.xcassets */; };
 		9A4986091FB401890095EFBB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A4986071FB401890095EFBB /* MainMenu.xib */; };
@@ -934,6 +935,7 @@
 				9A49862D1FB401B90095EFBB /* w_h0 in Resources */,
 				9A4986321FB401B90095EFBB /* b_h0 in Resources */,
 				9A49862E1FB401B90095EFBB /* w_h1 in Resources */,
+				9A46A2DC1FB700AE007480FF /* in_test in Resources */,
 				9A4986341FB403B60095EFBB /* one_input.png in Resources */,
 				9A49862F1FB401B90095EFBB /* b_h2 in Resources */,
 			);

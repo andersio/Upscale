@@ -33,11 +33,14 @@ class TestInferenceViewController: NSViewController {
         original.translatesAutoresizingMaskIntoConstraints = false
         inferred.translatesAutoresizingMaskIntoConstraints = false
 
+        original.imageScaling = .scaleAxesIndependently
+        inferred.imageScaling = .scaleAxesIndependently
+
         NSLayoutConstraint.activate([
-            original.widthAnchor.constraint(equalToConstant: 128),
-            original.heightAnchor.constraint(equalToConstant: 128),
-            inferred.widthAnchor.constraint(equalToConstant: 128),
-            inferred.heightAnchor.constraint(equalToConstant: 128),
+            original.widthAnchor.constraint(equalToConstant: 256),
+            original.heightAnchor.constraint(equalToConstant: 256),
+            inferred.widthAnchor.constraint(equalToConstant: 256),
+            inferred.heightAnchor.constraint(equalToConstant: 256),
             original.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             original.trailingAnchor.constraint(equalTo: inferred.leadingAnchor, constant: 10),
             inferred.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -49,8 +52,23 @@ class TestInferenceViewController: NSViewController {
         let image = NSImage(contentsOf: Bundle.main.url(forResource: "one_input", withExtension: "png")!)!
         original.image = image
 
-        let texture = make(image: image, device: coordinator.device)
+        let descriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .rgba32Float, width: 32, height: 32, mipmapped: false)
+        let texture = coordinator.device.makeTexture(descriptor: descriptor)!
+
+        let data = try! Data(contentsOf: Bundle.main.url(forResource: "in_test", withExtension: nil)!)
+        var rgba: [Float] = Array(repeating: 0.0, count: 32 * 32 * 4)
+        data.withUnsafeBytes { (floats: UnsafePointer<Float>) in
+            for i in 0 ..< 32*32 {
+                rgba[i * 4] = floats[i * 3]
+                rgba[i * 4 + 1] = floats[i * 3 + 1]
+                rgba[i * 4 + 2] = floats[i * 3 + 2]
+                rgba[i * 4 + 3] = 255.0
+            }
+        }
+
+        texture.replace(region: MTLRegionMake2D(0, 0, 32, 32), mipmapLevel: 0, withBytes: &rgba, bytesPerRow: 512)
         let mpsImage = MPSImage(texture: texture, featureChannels: 3)
+
         coordinator.superResolution.infer(mpsImage) { result in
             DispatchQueue.main.async {
                 self.inferred.image = NSImage(cgImage: CGImage.make(texture: result.texture),
