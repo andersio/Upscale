@@ -15,12 +15,7 @@ class RootViewController: UIViewController {
     private let pinchGesture: UIGestureRecognizer
 
     // MTKView
-    fileprivate let beforeView: MTKView
-    private let beforeLabel: ViewportLabel
-
-    // MTKView
     private let afterView: MTKView
-    private let afterLabel: ViewportLabel
 
     override var prefersStatusBarHidden: Bool {
         return true
@@ -36,14 +31,10 @@ class RootViewController: UIViewController {
         inferenceButton = UIBarButtonItem()
         pinchGesture = UIPinchGestureRecognizer()
 
-        beforeView = MTKView(frame: .zero, device: renderer.device)
-        beforeLabel = ViewportLabel()
         afterView = MTKView(frame: .zero, device: renderer.device)
-        afterLabel = ViewportLabel()
 
         super.init(nibName: nil, bundle: nil)
 
-        beforeView.delegate = self
         afterView.delegate = self
     }
 
@@ -90,30 +81,12 @@ class RootViewController: UIViewController {
         stackView.distribution = .fillEqually
         stackView.spacing = 1.0
 
-        beforeView.isHidden = true
         afterView.isHidden = true
-        beforeView.backgroundColor = .green
         afterView.backgroundColor = .red
-
-        beforeLabel.translatesAutoresizingMaskIntoConstraints = false
-        afterLabel.translatesAutoresizingMaskIntoConstraints = false
-        beforeView.addSubview(beforeLabel)
-        afterView.addSubview(afterLabel)
-        stackView.addArrangedSubview(beforeView)
         stackView.addArrangedSubview(afterView)
 
         let overlayMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        beforeView.layoutMargins = overlayMargins
         afterView.layoutMargins = overlayMargins
-        beforeLabel.label.text = "Before"
-        afterLabel.label.text = "After"
-
-        NSLayoutConstraint.activate([
-            beforeLabel.leftAnchor.constraint(equalTo: beforeView.layoutMarginsGuide.leftAnchor),
-            beforeLabel.bottomAnchor.constraint(equalTo: beforeView.layoutMarginsGuide.bottomAnchor),
-            afterLabel.leftAnchor.constraint(equalTo: afterView.layoutMarginsGuide.leftAnchor),
-            afterLabel.bottomAnchor.constraint(equalTo: afterView.layoutMarginsGuide.bottomAnchor)
-        ])
 
         viewModel.mode.producer.startWithValues { [weak self] mode in
             self?.updateStackView(for: mode)
@@ -129,74 +102,25 @@ class RootViewController: UIViewController {
     }
 
     private func updateStackView(for mode: RootViewModel.Mode) {
-        switch mode {
-        case .showBoth:
-            self.stackView.insertArrangedSubview(self.beforeView, at: 0)
-            self.stackView.insertArrangedSubview(self.afterView, at: 1)
-            UIView.animate(
-                withDuration: 0.40,
-                delay: 0.0,
-                usingSpringWithDamping: 0.6,
-                initialSpringVelocity: 0.2,
-                options: [],
-                animations: {
-                    self.beforeView.isHidden = false
-                    self.afterView.isHidden = false
-                    self.beforeLabel.alpha = 1.0
-                    self.afterLabel.alpha = 1.0
-                },
-                completion: nil
-            )
-        case .showBefore:
-            self.stackView.insertArrangedSubview(beforeView, at: 0)
-            UIView.animate(
-                withDuration: 0.40,
-                delay: 0.0,
-                usingSpringWithDamping: 0.6,
-                initialSpringVelocity: 0.2,
-                options: [],
-                animations: {
-                    self.beforeView.isHidden = false
-                    self.beforeLabel.alpha = 1.0
-                    self.afterView.isHidden = true
-                    self.afterLabel.alpha = 0.0
-                },
-                completion: { _ in
-                    self.stackView.removeArrangedSubview(self.afterView)
-                }
-            )
-        case .showAfter:
-            self.stackView.insertArrangedSubview(afterView, at: 0)
-            UIView.animate(
-                withDuration: 0.40,
-                delay: 0.0,
-                usingSpringWithDamping: 0.6,
-                initialSpringVelocity: 0.2,
-                options: [],
-                animations: {
-                    self.beforeView.isHidden = true
-                    self.beforeLabel.alpha = 0.0
-                    self.afterView.isHidden = false
-                    self.afterLabel.alpha = 1.0
-                },
-                completion: {_ in
-                    self.stackView.removeArrangedSubview(self.beforeView)
-                }
-            )
-        }
+        self.stackView.insertArrangedSubview(afterView, at: 0)
+        UIView.animate(
+            withDuration: 0.40,
+            delay: 0.0,
+            usingSpringWithDamping: 0.6,
+            initialSpringVelocity: 0.2,
+            options: [],
+            animations: {
+                self.afterView.isHidden = false
+            },
+            completion: nil
+        )
     }
 
     private func updateToolbar(for mode: RootViewModel.Mode) {
         let common = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
                       inferenceButton,
-                      UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-                      modeButton]
-        switch mode {
-        case .showBoth:
-            setToolbarItems([flipButton] + common, animated: true)
-        case .showBefore, .showAfter:
-            setToolbarItems(common, animated: true)
-        }
+                      UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)]
+        setToolbarItems(common, animated: true)
     }
 }
 
@@ -206,11 +130,9 @@ extension RootViewController: MTKViewDelegate {
     }
 
     func draw(in view: MTKView) {
-        //if view === beforeView {
-            guard let drawable = view.currentDrawable,
-                  let descriptor = view.currentRenderPassDescriptor
-                else { return }
-            renderer.draw(to: drawable, using: descriptor)
-        //}
+        guard let drawable = view.currentDrawable,
+              let descriptor = view.currentRenderPassDescriptor
+            else { return }
+        renderer.draw(to: drawable, using: descriptor)
     }
 }

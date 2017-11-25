@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A0B33581F78C0A4002E10BE /* test_shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B33571F78C0A4002E10BE /* test_shaders.metal */; };
+		9A0B33581F78C0A4002E10BE /* camera_viewport.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B33571F78C0A4002E10BE /* camera_viewport.metal */; };
 		9A2587DA1F6EBA8600117855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D06E11F670BC000CCB651 /* AppDelegate.swift */; };
 		9A2587DB1F6EBA8600117855 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D06E31F670BC000CCB651 /* RootViewController.swift */; };
 		9A2587DC1F6EBA8600117855 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D06F31F670C1600CCB651 /* RootBuilder.swift */; };
@@ -30,33 +30,26 @@
 		9A2588D01F6F91D000117855 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588CF1F6F91D000117855 /* CoreMedia.framework */; };
 		9A2588D11F6F924D00117855 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2588CA1F6F917200117855 /* CoreVideo.framework */; };
 		9A2631091F8338A400BF3DE9 /* SuperResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2631081F8338A400BF3DE9 /* SuperResolution.swift */; };
-		9A46A2DC1FB700AE007480FF /* in_test in Resources */ = {isa = PBXBuildFile; fileRef = 9A4986B21FB491C80095EFBB /* in_test */; };
-		9A46A2FD1FB71F9C007480FF /* in_test_bnns in Resources */ = {isa = PBXBuildFile; fileRef = 9A46A2FC1FB71F9C007480FF /* in_test_bnns */; };
-		9A46A2FE1FB71F9C007480FF /* in_test_bnns in Resources */ = {isa = PBXBuildFile; fileRef = 9A46A2FC1FB71F9C007480FF /* in_test_bnns */; };
-		9A46A3021FB71FAC007480FF /* w_h0_bnns in Resources */ = {isa = PBXBuildFile; fileRef = 9A46A2FF1FB71FAC007480FF /* w_h0_bnns */; };
-		9A46A3031FB71FAC007480FF /* w_h0_bnns in Resources */ = {isa = PBXBuildFile; fileRef = 9A46A2FF1FB71FAC007480FF /* w_h0_bnns */; };
-		9A46A3041FB71FAC007480FF /* w_h1_bnns in Resources */ = {isa = PBXBuildFile; fileRef = 9A46A3001FB71FAC007480FF /* w_h1_bnns */; };
-		9A46A3051FB71FAC007480FF /* w_h1_bnns in Resources */ = {isa = PBXBuildFile; fileRef = 9A46A3001FB71FAC007480FF /* w_h1_bnns */; };
-		9A46A3061FB71FAC007480FF /* w_h2_bnns in Resources */ = {isa = PBXBuildFile; fileRef = 9A46A3011FB71FAC007480FF /* w_h2_bnns */; };
-		9A46A3071FB71FAC007480FF /* w_h2_bnns in Resources */ = {isa = PBXBuildFile; fileRef = 9A46A3011FB71FAC007480FF /* w_h2_bnns */; };
+		9A466FC51FC96A5E00AE5FBA /* w_conv1 in Resources */ = {isa = PBXBuildFile; fileRef = 9A466FAD1FC96A5D00AE5FBA /* w_conv1 */; };
+		9A466FC61FC96A5E00AE5FBA /* w_conv2 in Resources */ = {isa = PBXBuildFile; fileRef = 9A466FC01FC96A5D00AE5FBA /* w_conv2 */; };
+		9A466FC71FC96A5E00AE5FBA /* b_conv3 in Resources */ = {isa = PBXBuildFile; fileRef = 9A466FC11FC96A5D00AE5FBA /* b_conv3 */; };
+		9A466FC81FC96A5E00AE5FBA /* w_conv3 in Resources */ = {isa = PBXBuildFile; fileRef = 9A466FC21FC96A5E00AE5FBA /* w_conv3 */; };
+		9A466FC91FC96A5E00AE5FBA /* b_conv1 in Resources */ = {isa = PBXBuildFile; fileRef = 9A466FC31FC96A5E00AE5FBA /* b_conv1 */; };
+		9A466FCA1FC96A5E00AE5FBA /* b_conv2 in Resources */ = {isa = PBXBuildFile; fileRef = 9A466FC41FC96A5E00AE5FBA /* b_conv2 */; };
+		9A466FCB1FC96A6500AE5FBA /* b_conv1 in Resources */ = {isa = PBXBuildFile; fileRef = 9A466FC31FC96A5E00AE5FBA /* b_conv1 */; };
+		9A466FCC1FC96A6500AE5FBA /* b_conv2 in Resources */ = {isa = PBXBuildFile; fileRef = 9A466FC41FC96A5E00AE5FBA /* b_conv2 */; };
+		9A466FCD1FC96A6500AE5FBA /* b_conv3 in Resources */ = {isa = PBXBuildFile; fileRef = 9A466FC11FC96A5D00AE5FBA /* b_conv3 */; };
+		9A466FCE1FC96A6500AE5FBA /* w_conv1 in Resources */ = {isa = PBXBuildFile; fileRef = 9A466FAD1FC96A5D00AE5FBA /* w_conv1 */; };
+		9A466FCF1FC96A6500AE5FBA /* w_conv2 in Resources */ = {isa = PBXBuildFile; fileRef = 9A466FC01FC96A5D00AE5FBA /* w_conv2 */; };
+		9A466FD01FC96A6500AE5FBA /* w_conv3 in Resources */ = {isa = PBXBuildFile; fileRef = 9A466FC21FC96A5E00AE5FBA /* w_conv3 */; };
 		9A4986041FB401890095EFBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4986031FB401890095EFBB /* AppDelegate.swift */; };
 		9A4986061FB401890095EFBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A4986051FB401890095EFBB /* Assets.xcassets */; };
 		9A4986091FB401890095EFBB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A4986071FB401890095EFBB /* MainMenu.xib */; };
 		9A4986241FB401A60095EFBB /* SuperResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2631081F8338A400BF3DE9 /* SuperResolution.swift */; };
 		9A4986251FB401A60095EFBB /* TransposedConvolutionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE101F8F595D007FFC61 /* TransposedConvolutionLayer.swift */; };
-		9A4986261FB401A60095EFBB /* SubpixelConvolutionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE0E1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift */; };
 		9A4986271FB401A60095EFBB /* Transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3452C1FA2366B0063ADF3 /* Transformer.swift */; };
-		9A4986281FB401A60095EFBB /* Activator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE121F8F597C007FFC61 /* Activator.swift */; };
-		9A4986291FB401A60095EFBB /* TestLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3452E1FA3017F0063ADF3 /* TestLayer.swift */; };
-		9A49862A1FB401A60095EFBB /* activators.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE0B1F8F37A7007FFC61 /* activators.metal */; };
-		9A49862B1FB401A60095EFBB /* test_shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B33571F78C0A4002E10BE /* test_shaders.metal */; };
+		9A49862B1FB401A60095EFBB /* camera_viewport.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B33571F78C0A4002E10BE /* camera_viewport.metal */; };
 		9A49862C1FB401A60095EFBB /* transformer.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9AD345151FA233130063ADF3 /* transformer.metal */; };
-		9A49862D1FB401B90095EFBB /* w_h0 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE391F9076A3007FFC61 /* w_h0 */; };
-		9A49862E1FB401B90095EFBB /* w_h1 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3A1F9076A3007FFC61 /* w_h1 */; };
-		9A49862F1FB401B90095EFBB /* b_h2 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3B1F9076A3007FFC61 /* b_h2 */; };
-		9A4986301FB401B90095EFBB /* w_h2 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3C1F9076A3007FFC61 /* w_h2 */; };
-		9A4986311FB401B90095EFBB /* b_h1 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3D1F9076A3007FFC61 /* b_h1 */; };
-		9A4986321FB401B90095EFBB /* b_h0 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3E1F9076A3007FFC61 /* b_h0 */; };
 		9A4986341FB403B60095EFBB /* one_input.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4986331FB403B60095EFBB /* one_input.png */; };
 		9A4986371FB403E50095EFBB /* TestInferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4986361FB403E50095EFBB /* TestInferenceViewController.swift */; };
 		9A4986381FB4047C0095EFBB /* MetalCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2588C61F6F902A00117855 /* MetalCoordinator.swift */; };
@@ -69,24 +62,10 @@
 		9A4986491FB410700095EFBB /* CGImage+MetalTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4986481FB410700095EFBB /* CGImage+MetalTexture.swift */; };
 		9A49864A1FB410700095EFBB /* CGImage+MetalTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4986481FB410700095EFBB /* CGImage+MetalTexture.swift */; };
 		9A49864B1FB4220E0095EFBB /* one_input.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4986331FB403B60095EFBB /* one_input.png */; };
-		9A49868E1FB467FD0095EFBB /* conv_transpose.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9A49868D1FB467FD0095EFBB /* conv_transpose.metal */; };
-		9A49868F1FB467FD0095EFBB /* conv_transpose.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9A49868D1FB467FD0095EFBB /* conv_transpose.metal */; };
-		9A49869E1FB46D060095EFBB /* TFModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A49869D1FB46D060095EFBB /* TFModel.mm */; };
-		9A4986B31FB491C80095EFBB /* in_test in Resources */ = {isa = PBXBuildFile; fileRef = 9A4986B21FB491C80095EFBB /* in_test */; };
 		9AC0FCF41FA715B700A35DF5 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0FCF31FA715B700A35DF5 /* UIImage+Resize.swift */; };
 		9AD345161FA233130063ADF3 /* transformer.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9AD345151FA233130063ADF3 /* transformer.metal */; };
 		9AD3452D1FA2366B0063ADF3 /* Transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3452C1FA2366B0063ADF3 /* Transformer.swift */; };
-		9AD3452F1FA3017F0063ADF3 /* TestLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3452E1FA3017F0063ADF3 /* TestLayer.swift */; };
-		9AECFE0D1F8F4A8E007FFC61 /* activators.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE0B1F8F37A7007FFC61 /* activators.metal */; };
-		9AECFE0F1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE0E1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift */; };
 		9AECFE111F8F595D007FFC61 /* TransposedConvolutionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE101F8F595D007FFC61 /* TransposedConvolutionLayer.swift */; };
-		9AECFE131F8F597C007FFC61 /* Activator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE121F8F597C007FFC61 /* Activator.swift */; };
-		9AECFE511F9076A3007FFC61 /* w_h0 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE391F9076A3007FFC61 /* w_h0 */; };
-		9AECFE521F9076A3007FFC61 /* w_h1 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3A1F9076A3007FFC61 /* w_h1 */; };
-		9AECFE531F9076A3007FFC61 /* b_h2 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3B1F9076A3007FFC61 /* b_h2 */; };
-		9AECFE541F9076A3007FFC61 /* w_h2 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3C1F9076A3007FFC61 /* w_h2 */; };
-		9AECFE551F9076A3007FFC61 /* b_h1 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3D1F9076A3007FFC61 /* b_h1 */; };
-		9AECFE561F9076A3007FFC61 /* b_h0 in Resources */ = {isa = PBXBuildFile; fileRef = 9AECFE3E1F9076A3007FFC61 /* b_h0 */; };
 		9AECFE661F90787C007FFC61 /* TOCropViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AECFE631F907875007FFC61 /* TOCropViewController.framework */; };
 		9AECFE671F90787C007FFC61 /* TOCropViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AECFE631F907875007FFC61 /* TOCropViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9AECFE6B1F9079FE007FFC61 /* RootFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE6A1F9079FE007FFC61 /* RootFlowController.swift */; };
@@ -95,7 +74,6 @@
 		9AECFE711F907F9A007FFC61 /* InferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE701F907F9A007FFC61 /* InferenceViewController.swift */; };
 		9AECFE731F907FA6007FFC61 /* InferenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE721F907FA6007FFC61 /* InferenceViewModel.swift */; };
 		9AECFE751F907FD1007FFC61 /* ImageCropperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AECFE741F907FD1007FFC61 /* ImageCropperViewModel.swift */; };
-		BE542E26D861F41E928513C3 /* libPods-Upscale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C506F5CB8F3804D1C47A0 /* libPods-Upscale.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -356,9 +334,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0D9C506F5CB8F3804D1C47A0 /* libPods-Upscale.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Upscale.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3599CD1B0B7D69807F1D03B9 /* Pods-Upscale.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Upscale.release.xcconfig"; path = "Pods/Target Support Files/Pods-Upscale/Pods-Upscale.release.xcconfig"; sourceTree = "<group>"; };
-		9A0B33571F78C0A4002E10BE /* test_shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = test_shaders.metal; sourceTree = "<group>"; };
+		9A0B33571F78C0A4002E10BE /* camera_viewport.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = camera_viewport.metal; sourceTree = "<group>"; };
+		9A1865A81FCDA331009ED22F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9A2588641F6EBBB600117855 /* ReactiveSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveSwift.xcodeproj; path = Carthage/Checkouts/ReactiveSwift/ReactiveSwift.xcodeproj; sourceTree = "<group>"; };
 		9A25887C1F6EBBB700117855 /* Result.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Result.xcodeproj; path = Carthage/Checkouts/Result/Result.xcodeproj; sourceTree = "<group>"; };
 		9A2588941F6EBBB700117855 /* ReactiveCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCocoa.xcodeproj; path = Carthage/Checkouts/ReactiveCocoa/ReactiveCocoa.xcodeproj; sourceTree = "<group>"; };
@@ -373,10 +350,12 @@
 		9A2588CA1F6F917200117855 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		9A2588CF1F6F91D000117855 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		9A2631081F8338A400BF3DE9 /* SuperResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperResolution.swift; sourceTree = "<group>"; };
-		9A46A2FC1FB71F9C007480FF /* in_test_bnns */ = {isa = PBXFileReference; lastKnownFileType = file; path = in_test_bnns; sourceTree = "<group>"; };
-		9A46A2FF1FB71FAC007480FF /* w_h0_bnns */ = {isa = PBXFileReference; lastKnownFileType = file; path = w_h0_bnns; sourceTree = "<group>"; };
-		9A46A3001FB71FAC007480FF /* w_h1_bnns */ = {isa = PBXFileReference; lastKnownFileType = file; path = w_h1_bnns; sourceTree = "<group>"; };
-		9A46A3011FB71FAC007480FF /* w_h2_bnns */ = {isa = PBXFileReference; lastKnownFileType = file; path = w_h2_bnns; sourceTree = "<group>"; };
+		9A466FAD1FC96A5D00AE5FBA /* w_conv1 */ = {isa = PBXFileReference; lastKnownFileType = file; path = w_conv1; sourceTree = "<group>"; };
+		9A466FC01FC96A5D00AE5FBA /* w_conv2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = w_conv2; sourceTree = "<group>"; };
+		9A466FC11FC96A5D00AE5FBA /* b_conv3 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = b_conv3; sourceTree = "<group>"; };
+		9A466FC21FC96A5E00AE5FBA /* w_conv3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = w_conv3; sourceTree = "<group>"; };
+		9A466FC31FC96A5E00AE5FBA /* b_conv1 */ = {isa = PBXFileReference; lastKnownFileType = text; path = b_conv1; sourceTree = "<group>"; };
+		9A466FC41FC96A5E00AE5FBA /* b_conv2 */ = {isa = PBXFileReference; lastKnownFileType = text; path = b_conv2; sourceTree = "<group>"; };
 		9A4986011FB401890095EFBB /* UpscaleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UpscaleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4986031FB401890095EFBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A4986051FB401890095EFBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -388,11 +367,6 @@
 		9A4986461FB404A10095EFBB /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
 		9A4986471FB404A10095EFBB /* MetalPerformanceShaders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalPerformanceShaders.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/MetalPerformanceShaders.framework; sourceTree = DEVELOPER_DIR; };
 		9A4986481FB410700095EFBB /* CGImage+MetalTexture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage+MetalTexture.swift"; sourceTree = "<group>"; };
-		9A49868D1FB467FD0095EFBB /* conv_transpose.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = conv_transpose.metal; sourceTree = "<group>"; };
-		9A49869C1FB46D060095EFBB /* Upscale-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Upscale-Bridging-Header.h"; sourceTree = "<group>"; };
-		9A49869D1FB46D060095EFBB /* TFModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TFModel.mm; sourceTree = "<group>"; };
-		9A4986B11FB46D1B0095EFBB /* TFModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFModel.h; sourceTree = "<group>"; };
-		9A4986B21FB491C80095EFBB /* in_test */ = {isa = PBXFileReference; lastKnownFileType = file; name = in_test; path = ../../subpixel/samples/in_test; sourceTree = "<group>"; };
 		9A8D06DE1F670BC000CCB651 /* Upscale.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Upscale.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8D06E11F670BC000CCB651 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A8D06E31F670BC000CCB651 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -403,17 +377,7 @@
 		9AC0FCF31FA715B700A35DF5 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		9AD345151FA233130063ADF3 /* transformer.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = transformer.metal; sourceTree = "<group>"; };
 		9AD3452C1FA2366B0063ADF3 /* Transformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transformer.swift; sourceTree = "<group>"; };
-		9AD3452E1FA3017F0063ADF3 /* TestLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLayer.swift; sourceTree = "<group>"; };
-		9AECFE0B1F8F37A7007FFC61 /* activators.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = activators.metal; sourceTree = "<group>"; };
-		9AECFE0E1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubpixelConvolutionLayer.swift; sourceTree = "<group>"; };
 		9AECFE101F8F595D007FFC61 /* TransposedConvolutionLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransposedConvolutionLayer.swift; sourceTree = "<group>"; };
-		9AECFE121F8F597C007FFC61 /* Activator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activator.swift; sourceTree = "<group>"; };
-		9AECFE391F9076A3007FFC61 /* w_h0 */ = {isa = PBXFileReference; lastKnownFileType = file; path = w_h0; sourceTree = "<group>"; };
-		9AECFE3A1F9076A3007FFC61 /* w_h1 */ = {isa = PBXFileReference; lastKnownFileType = file; path = w_h1; sourceTree = "<group>"; };
-		9AECFE3B1F9076A3007FFC61 /* b_h2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = b_h2; sourceTree = "<group>"; };
-		9AECFE3C1F9076A3007FFC61 /* w_h2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = w_h2; sourceTree = "<group>"; };
-		9AECFE3D1F9076A3007FFC61 /* b_h1 */ = {isa = PBXFileReference; lastKnownFileType = file; path = b_h1; sourceTree = "<group>"; };
-		9AECFE3E1F9076A3007FFC61 /* b_h0 */ = {isa = PBXFileReference; lastKnownFileType = file; path = b_h0; sourceTree = "<group>"; };
 		9AECFE571F907874007FFC61 /* TOCropViewControllerExample.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TOCropViewControllerExample.xcodeproj; path = Carthage/Checkouts/TOCropViewController/TOCropViewControllerExample.xcodeproj; sourceTree = "<group>"; };
 		9AECFE6A1F9079FE007FFC61 /* RootFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFlowController.swift; sourceTree = "<group>"; };
 		9AECFE6C1F907C06007FFC61 /* ImageCropperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropperViewController.swift; sourceTree = "<group>"; };
@@ -421,7 +385,6 @@
 		9AECFE701F907F9A007FFC61 /* InferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceViewController.swift; sourceTree = "<group>"; };
 		9AECFE721F907FA6007FFC61 /* InferenceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceViewModel.swift; sourceTree = "<group>"; };
 		9AECFE741F907FD1007FFC61 /* ImageCropperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropperViewModel.swift; sourceTree = "<group>"; };
-		B46BC32EE250CDF542AC2938 /* Pods-Upscale.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Upscale.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Upscale/Pods-Upscale.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,7 +412,6 @@
 				9A2588B41F6EBBC700117855 /* Result.framework in Frameworks */,
 				9A2588AC1F6EBBC700117855 /* ReactiveCocoa.framework in Frameworks */,
 				9A2588B01F6EBBC700117855 /* ReactiveSwift.framework in Frameworks */,
-				BE542E26D861F41E928513C3 /* libPods-Upscale.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,9 +422,8 @@
 			isa = PBXGroup;
 			children = (
 				9AD345151FA233130063ADF3 /* transformer.metal */,
-				9AECFE0B1F8F37A7007FFC61 /* activators.metal */,
-				9A0B33571F78C0A4002E10BE /* test_shaders.metal */,
-				9A49868D1FB467FD0095EFBB /* conv_transpose.metal */,
+				9A0B33571F78C0A4002E10BE /* camera_viewport.metal */,
+				9A1865A81FCDA331009ED22F /* LICENSE */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -531,7 +492,6 @@
 				9A2588B91F6EBBD100117855 /* Metal.framework */,
 				9A2588BA1F6EBBD100117855 /* MetalKit.framework */,
 				9A2588BB1F6EBBD100117855 /* MetalPerformanceShaders.framework */,
-				0D9C506F5CB8F3804D1C47A0 /* libPods-Upscale.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -541,10 +501,7 @@
 			children = (
 				9A2631081F8338A400BF3DE9 /* SuperResolution.swift */,
 				9AECFE101F8F595D007FFC61 /* TransposedConvolutionLayer.swift */,
-				9AECFE0E1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift */,
 				9AD3452C1FA2366B0063ADF3 /* Transformer.swift */,
-				9AECFE121F8F597C007FFC61 /* Activator.swift */,
-				9AD3452E1FA3017F0063ADF3 /* TestLayer.swift */,
 			);
 			path = subpixel;
 			sourceTree = "<group>";
@@ -570,7 +527,6 @@
 				9A4986021FB401890095EFBB /* UpscaleApp */,
 				9A8D06DF1F670BC000CCB651 /* Products */,
 				9A2588B81F6EBBD000117855 /* Frameworks */,
-				AAC44DAA0B05B40CF8C773F7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -587,7 +543,6 @@
 			isa = PBXGroup;
 			children = (
 				9A4986331FB403B60095EFBB /* one_input.png */,
-				9A4986B21FB491C80095EFBB /* in_test */,
 				9AECFE381F9076A3007FFC61 /* AvatarWeights */,
 				9A2630F51F83389600BF3DE9 /* subpixel */,
 				9A0B33421F78C081002E10BE /* Shaders */,
@@ -609,9 +564,6 @@
 				9A2588C61F6F902A00117855 /* MetalCoordinator.swift */,
 				9AC0FCF31FA715B700A35DF5 /* UIImage+Resize.swift */,
 				9A4986481FB410700095EFBB /* CGImage+MetalTexture.swift */,
-				9A49869D1FB46D060095EFBB /* TFModel.mm */,
-				9A4986B11FB46D1B0095EFBB /* TFModel.h */,
-				9A49869C1FB46D060095EFBB /* Upscale-Bridging-Header.h */,
 			);
 			path = Upscale;
 			sourceTree = "<group>";
@@ -619,16 +571,12 @@
 		9AECFE381F9076A3007FFC61 /* AvatarWeights */ = {
 			isa = PBXGroup;
 			children = (
-				9A46A2FF1FB71FAC007480FF /* w_h0_bnns */,
-				9A46A3001FB71FAC007480FF /* w_h1_bnns */,
-				9A46A3011FB71FAC007480FF /* w_h2_bnns */,
-				9A46A2FC1FB71F9C007480FF /* in_test_bnns */,
-				9AECFE391F9076A3007FFC61 /* w_h0 */,
-				9AECFE3A1F9076A3007FFC61 /* w_h1 */,
-				9AECFE3B1F9076A3007FFC61 /* b_h2 */,
-				9AECFE3C1F9076A3007FFC61 /* w_h2 */,
-				9AECFE3D1F9076A3007FFC61 /* b_h1 */,
-				9AECFE3E1F9076A3007FFC61 /* b_h0 */,
+				9A466FC31FC96A5E00AE5FBA /* b_conv1 */,
+				9A466FC41FC96A5E00AE5FBA /* b_conv2 */,
+				9A466FC11FC96A5D00AE5FBA /* b_conv3 */,
+				9A466FAD1FC96A5D00AE5FBA /* w_conv1 */,
+				9A466FC01FC96A5D00AE5FBA /* w_conv2 */,
+				9A466FC21FC96A5E00AE5FBA /* w_conv3 */,
 			);
 			path = AvatarWeights;
 			sourceTree = "<group>";
@@ -642,15 +590,6 @@
 				9AECFE651F907875007FFC61 /* TOCropViewControllerExample-Extension.appex */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		AAC44DAA0B05B40CF8C773F7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B46BC32EE250CDF542AC2938 /* Pods-Upscale.debug.xcconfig */,
-				3599CD1B0B7D69807F1D03B9 /* Pods-Upscale.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -681,13 +620,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A8D06F01F670BC000CCB651 /* Build configuration list for PBXNativeTarget "Upscale" */;
 			buildPhases = (
-				DBE11DD60C7AE611BC09DE1C /* [CP] Check Pods Manifest.lock */,
 				9A8D06DA1F670BC000CCB651 /* Sources */,
 				9A8D06DB1F670BC000CCB651 /* Frameworks */,
 				9A8D06DC1F670BC000CCB651 /* Resources */,
 				9A2587D91F6EB94400117855 /* Embed Frameworks */,
-				BF9548A2CE74343E98DD09BC /* [CP] Embed Pods Frameworks */,
-				A68F8676260266F81DC91D83 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -944,20 +880,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A4986301FB401B90095EFBB /* w_h2 in Resources */,
+				9A466FCC1FC96A6500AE5FBA /* b_conv2 in Resources */,
 				9A4986061FB401890095EFBB /* Assets.xcassets in Resources */,
-				9A4986311FB401B90095EFBB /* b_h1 in Resources */,
+				9A466FCF1FC96A6500AE5FBA /* w_conv2 in Resources */,
 				9A4986091FB401890095EFBB /* MainMenu.xib in Resources */,
-				9A49862D1FB401B90095EFBB /* w_h0 in Resources */,
-				9A4986321FB401B90095EFBB /* b_h0 in Resources */,
-				9A49862E1FB401B90095EFBB /* w_h1 in Resources */,
-				9A46A2DC1FB700AE007480FF /* in_test in Resources */,
+				9A466FCE1FC96A6500AE5FBA /* w_conv1 in Resources */,
+				9A466FCB1FC96A6500AE5FBA /* b_conv1 in Resources */,
+				9A466FD01FC96A6500AE5FBA /* w_conv3 in Resources */,
+				9A466FCD1FC96A6500AE5FBA /* b_conv3 in Resources */,
 				9A4986341FB403B60095EFBB /* one_input.png in Resources */,
-				9A46A3071FB71FAC007480FF /* w_h2_bnns in Resources */,
-				9A49862F1FB401B90095EFBB /* b_h2 in Resources */,
-				9A46A2FE1FB71F9C007480FF /* in_test_bnns in Resources */,
-				9A46A3051FB71FAC007480FF /* w_h1_bnns in Resources */,
-				9A46A3031FB71FAC007480FF /* w_h0_bnns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,75 +896,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AECFE541F9076A3007FFC61 /* w_h2 in Resources */,
+				9A466FCA1FC96A5E00AE5FBA /* b_conv2 in Resources */,
+				9A466FC91FC96A5E00AE5FBA /* b_conv1 in Resources */,
 				9A2587DD1F6EBA9C00117855 /* Assets.xcassets in Resources */,
-				9AECFE551F9076A3007FFC61 /* b_h1 in Resources */,
 				9A2588C31F6ECB8700117855 /* LaunchScreen.storyboard in Resources */,
-				9AECFE511F9076A3007FFC61 /* w_h0 in Resources */,
-				9AECFE561F9076A3007FFC61 /* b_h0 in Resources */,
-				9AECFE521F9076A3007FFC61 /* w_h1 in Resources */,
-				9A4986B31FB491C80095EFBB /* in_test in Resources */,
+				9A466FC61FC96A5E00AE5FBA /* w_conv2 in Resources */,
 				9A49864B1FB4220E0095EFBB /* one_input.png in Resources */,
-				9A46A3061FB71FAC007480FF /* w_h2_bnns in Resources */,
-				9AECFE531F9076A3007FFC61 /* b_h2 in Resources */,
-				9A46A2FD1FB71F9C007480FF /* in_test_bnns in Resources */,
-				9A46A3041FB71FAC007480FF /* w_h1_bnns in Resources */,
-				9A46A3021FB71FAC007480FF /* w_h0_bnns in Resources */,
+				9A466FC71FC96A5E00AE5FBA /* b_conv3 in Resources */,
+				9A466FC81FC96A5E00AE5FBA /* w_conv3 in Resources */,
+				9A466FC51FC96A5E00AE5FBA /* w_conv1 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		A68F8676260266F81DC91D83 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Upscale/Pods-Upscale-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BF9548A2CE74343E98DD09BC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Upscale/Pods-Upscale-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DBE11DD60C7AE611BC09DE1C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Upscale-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9A4985FD1FB401890095EFBB /* Sources */ = {
@@ -1043,17 +918,12 @@
 				9A4986041FB401890095EFBB /* AppDelegate.swift in Sources */,
 				9A49862C1FB401A60095EFBB /* transformer.metal in Sources */,
 				9A4986371FB403E50095EFBB /* TestInferenceViewController.swift in Sources */,
-				9A49862A1FB401A60095EFBB /* activators.metal in Sources */,
 				9A49864A1FB410700095EFBB /* CGImage+MetalTexture.swift in Sources */,
-				9A49868F1FB467FD0095EFBB /* conv_transpose.metal in Sources */,
 				9A4986381FB4047C0095EFBB /* MetalCoordinator.swift in Sources */,
-				9A4986281FB401A60095EFBB /* Activator.swift in Sources */,
 				9A4986251FB401A60095EFBB /* TransposedConvolutionLayer.swift in Sources */,
-				9A4986261FB401A60095EFBB /* SubpixelConvolutionLayer.swift in Sources */,
 				9A4986271FB401A60095EFBB /* Transformer.swift in Sources */,
 				9A4986241FB401A60095EFBB /* SuperResolution.swift in Sources */,
-				9A4986291FB401A60095EFBB /* TestLayer.swift in Sources */,
-				9A49862B1FB401A60095EFBB /* test_shaders.metal in Sources */,
+				9A49862B1FB401A60095EFBB /* camera_viewport.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1067,26 +937,20 @@
 				9A2587DB1F6EBA8600117855 /* RootViewController.swift in Sources */,
 				9AECFE751F907FD1007FFC61 /* ImageCropperViewModel.swift in Sources */,
 				9AD3452D1FA2366B0063ADF3 /* Transformer.swift in Sources */,
-				9AECFE0D1F8F4A8E007FFC61 /* activators.metal in Sources */,
 				9AD345161FA233130063ADF3 /* transformer.metal in Sources */,
 				9A2588C21F6EC3A500117855 /* ViewportLabel.swift in Sources */,
-				9A49869E1FB46D060095EFBB /* TFModel.mm in Sources */,
 				9A2588C01F6EBBF000117855 /* RootViewModel.swift in Sources */,
-				9AECFE131F8F597C007FFC61 /* Activator.swift in Sources */,
 				9A2587DC1F6EBA8600117855 /* RootBuilder.swift in Sources */,
 				9AECFE6F1F907F07007FFC61 /* Operators.swift in Sources */,
 				9AECFE731F907FA6007FFC61 /* InferenceViewModel.swift in Sources */,
-				9A49868E1FB467FD0095EFBB /* conv_transpose.metal in Sources */,
 				9A2631091F8338A400BF3DE9 /* SuperResolution.swift in Sources */,
 				9A2588C51F6F837F00117855 /* CameraSource.swift in Sources */,
 				9AECFE6D1F907C06007FFC61 /* ImageCropperViewController.swift in Sources */,
 				9A4986491FB410700095EFBB /* CGImage+MetalTexture.swift in Sources */,
 				9AECFE711F907F9A007FFC61 /* InferenceViewController.swift in Sources */,
-				9AECFE0F1F8F5947007FFC61 /* SubpixelConvolutionLayer.swift in Sources */,
 				9AECFE111F8F595D007FFC61 /* TransposedConvolutionLayer.swift in Sources */,
 				9AC0FCF41FA715B700A35DF5 /* UIImage+Resize.swift in Sources */,
-				9A0B33581F78C0A4002E10BE /* test_shaders.metal in Sources */,
-				9AD3452F1FA3017F0063ADF3 /* TestLayer.swift in Sources */,
+				9A0B33581F78C0A4002E10BE /* camera_viewport.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1301,7 +1165,6 @@
 		};
 		9A8D06F11F670BC000CCB651 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B46BC32EE250CDF542AC2938 /* Pods-Upscale.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1314,7 +1177,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.andersha.Upscale;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Upscale/Upscale-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
@@ -1322,7 +1184,6 @@
 		};
 		9A8D06F21F670BC000CCB651 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3599CD1B0B7D69807F1D03B9 /* Pods-Upscale.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1335,7 +1196,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.andersha.Upscale;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Upscale/Upscale-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

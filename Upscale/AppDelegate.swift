@@ -10,13 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow()
         self.window = window
 
-        let image = UIImage(named: "one_input")!
+        let builder = RootBuilder()
 
-        let builder = _RootChildBuilders(coordinator: MetalCoordinator())
-        window.rootViewController = builder.makeInferrer(for: image, router: { _ in })
-        window.makeKeyAndVisible()
-
-/*
         AVCameraSource.make()
             .observe(on: UIScheduler())
             .startWithResult { result in
@@ -32,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     window.rootViewController!.present(alertController, animated: true, completion: nil)
                 }
             }
-*/
+
         return true
     }
 

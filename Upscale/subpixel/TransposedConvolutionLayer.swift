@@ -2,6 +2,11 @@ import MetalPerformanceShaders
 import Metal
 
 final class TransposedConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
+    enum Activation {
+        case relu
+        case tanh
+    }
+
     private var kernel: MPSCNNConvolutionTranspose!
     private let _descriptor: MPSCNNConvolutionDescriptor
 
@@ -17,7 +22,7 @@ final class TransposedConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
     private var weightsBuffer: UnsafeMutablePointer<Float>?
     private var biasBuffer: UnsafeMutablePointer<Float>?
 
-    init(label: String, device: MTLDevice, kernelSize: (width: Int, height: Int), inputBatchSize: Int, inputFeatureChannels: Int, outputFeatureChannels: Int, weights: URL, bias: URL) {
+    init(label: String, device: MTLDevice, kernelSize: (width: Int, height: Int), inputBatchSize: Int, inputFeatureChannels: Int, outputFeatureChannels: Int, weights: URL, bias: URL, activation: Activation, isIntermediate: Bool = true) {
         numberOfWeights = kernelSize.width * kernelSize.height * outputFeatureChannels * inputFeatureChannels
         kernelHeight = kernelSize.height
         kernelWidth = kernelSize.width
@@ -33,11 +38,19 @@ final class TransposedConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
                                                   inputFeatureChannels: inputFeatureChannels,
                                                   outputFeatureChannels: outputFeatureChannels)
         _descriptor.groups = inputBatchSize
-        _descriptor.setNeuronType(.none, parameterA: 1.0, parameterB: 1.0)
+        switch activation {
+        case .relu:
+            _descriptor.setNeuronType(.reLU, parameterA: 0.2, parameterB: 1.0)
+        case .tanh:
+            _descriptor.setNeuronType(.tanH, parameterA: 1.0, parameterB: 1.0)
+        }
 
         super.init()
         kernel = MPSCNNConvolutionTranspose(device: device, weights: self)
-        kernel.destinationImageAllocator = MPSImage.defaultAllocator()
+
+        if !isIntermediate {
+            kernel.destinationImageAllocator = MPSImage.defaultAllocator()
+        }
     }
 
     deinit {
@@ -76,39 +89,9 @@ final class TransposedConvolutionLayer: NSObject, MPSCNNConvolutionDataSource {
             && weights.count == numberOfWeights * MemoryLayout<Float>.size)
         let copiedBiasBytes = bias.copyBytes(to: UnsafeMutableBufferPointer(start: biasBuffer!, count: outputFeatureChannels))
         assert(copiedBiasBytes == outputFeatureChannels * MemoryLayout<Float>.size)
-/*
         let copiedWeightBytes = weights.copyBytes(to: UnsafeMutableBufferPointer(start: weightsBuffer!, count: numberOfWeights))
         assert(copiedWeightBytes == numberOfWeights * MemoryLayout<Float>.size)
-*/
 
-        weights.withUnsafeBytes { (weights: UnsafePointer<Float>) in
-            let _1 = numberOfWeights / outputFeatureChannels
-
-            for o in 0 ..< outputFeatureChannels {
-                let dest = UnsafeMutableBufferPointer(start: weightsBuffer! + o * _1, count: _1)
-                let source = UnsafeBufferPointer(start: weights + o * _1, count: _1)
-
-                let kernelSize = kernelWidth * kernelHeight
-                for p in 0 ..< kernelSize {
-                    let p0 = p * inputFeatureChannels
-                    let p1 = p0 + inputFeatureChannels
-                    let p3 = (kernelSize - p) * inputFeatureChannels
-                    let p2 = p3 - inputFeatureChannels
-                    _ = UnsafeMutableBufferPointer(rebasing: dest[p0 ..< p1])
-                        .initialize(from: source[p2 ..< p3])
-                }
-            }
-        }
-
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .scientific
-/*
-        let output = Array(UnsafeBufferPointer(start: biasBuffer!, count: outputFeatureChannels))
-            .map { formatter.string(from: $0 as NSNumber)! }
-            .joined(separator: " ")
-        print("W_\(_label)")
-        print(output)
-*/
         return true
     }
 

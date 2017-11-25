@@ -16,7 +16,7 @@ class ImageCropperViewModel {
         (events, eventsObserver) = Signal.pipe()
     }
 
-    func commit(_ rect: CGRect) {
+    func commit(_ rect: CGRect, _ angle: Int) {
         guard let finalImage = image.resized(to: CGSize(width: 128, height: 128), cropping: rect)
             else { return }
         eventsObserver.send(value: .userDidFinishCropping(finalImage))

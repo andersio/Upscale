@@ -36,9 +36,14 @@ final class RootViewModel {
     let events: Signal<Event, NoError>
     let infer: Action<(), Never, NoError>
 
+    private let cameraSource: CameraSource
+
     init(cameraSource: CameraSource) {
+        self.cameraSource = cameraSource
+
         let mode = MutableProperty(Mode.showBoth)
         self.mode = Property(capturing: mode)
+
         self.switchMode = Action {
             return SignalProducer.empty.on(completed: {
                 mode.modify { mode in
@@ -79,7 +84,14 @@ final class RootViewModel {
         events = infer.completed
             .withLatest(from: cameraSource.samples)
             .observe(on: QueueScheduler())
-            .map { UIImage(ciImage: CIImage(cvImageBuffer: $0.1)) }
+            .map { buffer in
+                let intermediate = CIImage(cvImageBuffer: buffer.1)
+                    .oriented(.right)
+                let image = CIContext().createCGImage(intermediate, from: intermediate.extent)!
+                return UIImage(cgImage: image,
+                               scale: UIScreen.main.scale,
+                               orientation: .up)
+            }
             .map(Event.showCropper)
     }
 }

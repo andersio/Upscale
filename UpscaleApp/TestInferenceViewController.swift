@@ -46,7 +46,7 @@ class TestInferenceViewController: NSViewController {
             original.heightAnchor.constraint(equalToConstant: 256),
             inferred.widthAnchor.constraint(equalToConstant: 256),
             inferred.heightAnchor.constraint(equalToConstant: 256),
-            inferredCPU.widthAnchor.constraint(equalToConstant: 256),
+            inferredCPU.widthAnchor.constraint(equalToConstant: 0),
             inferredCPU.heightAnchor.constraint(equalToConstant: 256),
             original.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             original.trailingAnchor.constraint(equalTo: inferred.leadingAnchor, constant: 10),
@@ -61,33 +61,15 @@ class TestInferenceViewController: NSViewController {
         let image = NSImage(contentsOf: Bundle.main.url(forResource: "one_input", withExtension: "png")!)!
         original.image = image
 
-        let descriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .rgba32Float, width: 32, height: 32, mipmapped: false)
-        let texture = coordinator.device.makeTexture(descriptor: descriptor)!
-
-        let data = try! Data(contentsOf: Bundle.main.url(forResource: "in_test", withExtension: nil)!)
-        var rgba: [Float] = Array(repeating: 0.0, count: 32 * 32 * 4)
-        data.withUnsafeBytes { (floats: UnsafePointer<Float>) in
-            for i in 0 ..< 32*32 {
-                rgba[i * 4] = floats[i * 3]
-                rgba[i * 4 + 1] = floats[i * 3 + 1]
-                rgba[i * 4 + 2] = floats[i * 3 + 2]
-                rgba[i * 4 + 3] = 255.0
-            }
-        }
-
-        texture.replace(region: MTLRegionMake2D(0, 0, 32, 32), mipmapLevel: 0, withBytes: &rgba, bytesPerRow: 512)
+        let texture = make(image: image, device: coordinator.device)
         let mpsImage = MPSImage(texture: texture, featureChannels: 3)
 
-        coordinator.superResolution.infer(mpsImage) { result in
+        coordinator.superResolution.infer(mpsImage) { result, _ in
             DispatchQueue.main.async {
                 self.inferred.image = NSImage(cgImage: CGImage.make(texture: result.texture),
                                               size: NSSize(width: result.width, height: result.height))
             }
         }
-
-        let cpuImage = coordinator.superResolution.cpuInfer()
-        inferredCPU.image = NSImage(cgImage: CIContext().createCGImage(cpuImage, from: CGRect(x: 0, y: 0, width: 128, height: 128))!,
-                                    size: NSSize(width: 128, height: 128))
     }
 }
 
@@ -109,9 +91,6 @@ class TestInferenceViewController: NSViewController {
                                       space: colorSpace,
                                       bitmapInfo: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue)!
 
-        // Flip the context so the positive Y axis points down
-        bitmapContext.translateBy(x: 0, y: CGFloat(cgImage.height))
-        bitmapContext.scaleBy(x: 1, y: -1)
         bitmapContext.draw(cgImage, in: CGRect(x: 0, y: 0, width: CGFloat(cgImage.width), height: CGFloat(cgImage.height)))
 
         let textureDescriptor = MTLTextureDescriptor

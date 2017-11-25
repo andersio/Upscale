@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  UpscaleApp
-//
-//  Created by Anders on 9/11/2017.
-//  Copyright © 2017 Anders Ha. All rights reserved.
-//
-
 import Cocoa
 
 @NSApplicationMain

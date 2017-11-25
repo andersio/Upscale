@@ -49,9 +49,10 @@ class InferenceViewController: UIViewController {
         toolbarItems = [UIBarButtonItem(customView: segmentedControl)]
         navigationController?.setToolbarHidden(false, animated: true)
 
-        segmentedControl.insertSegment(withTitle: "Original", at: 0, animated: false)
-        segmentedControl.insertSegment(withTitle: "Subpixel", at: 1, animated: false)
-        segmentedControl.insertSegment(withTitle: "Bilinear", at: 2, animated: false)
+        segmentedControl.insertSegment(withTitle: "HR Ref", at: 0, animated: false)
+        segmentedControl.insertSegment(withTitle: "LR Input", at: 1, animated: false)
+        segmentedControl.insertSegment(withTitle: "Subpixel", at: 2, animated: false)
+        segmentedControl.insertSegment(withTitle: "Bilinear", at: 3, animated: false)
         segmentedControl.selectedSegmentIndex = 0
 
         segmentedControl.reactive.selectedSegmentIndexes
@@ -61,9 +62,11 @@ class InferenceViewController: UIViewController {
                 case 0:
                     imageView?.image = viewModel.original
                 case 1:
-                    imageView?.image = viewModel.image.value
+                    imageView?.image = viewModel.downsampled
                 case 2:
-                    imageView?.image = nil
+                    imageView?.image = viewModel.image.value
+                case 3:
+                    imageView?.image = viewModel.billinear
                 default:
                     fatalError()
                 }

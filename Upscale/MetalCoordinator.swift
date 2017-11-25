@@ -40,12 +40,12 @@ final class MetalCoordinator: Renderer {
 
         let bundle = Bundle(for: MetalCoordinator.self)
         let descriptor = SuperResolution.WeightsDescriptor(
-            hiddenLayer0Weight: bundle.url(forResource: "w_h0", withExtension: nil)!,
-            hiddenLayer1Weight: bundle.url(forResource: "w_h1", withExtension: nil)!,
-            subpixelLayerWeight: bundle.url(forResource: "w_h2", withExtension: nil)!,
-            hiddenLayer0Bias: bundle.url(forResource: "b_h0", withExtension: nil)!,
-            hiddenLayer1Bias: bundle.url(forResource: "b_h1", withExtension: nil)!,
-            subpixelLayerBias: bundle.url(forResource: "b_h2", withExtension: nil)!
+            hiddenLayer0Weight: bundle.url(forResource: "w_conv1", withExtension: nil)!,
+            hiddenLayer1Weight: bundle.url(forResource: "w_conv2", withExtension: nil)!,
+            hiddenLayer2Weight: bundle.url(forResource: "w_conv3", withExtension: nil)!,
+            hiddenLayer0Bias: bundle.url(forResource: "b_conv1", withExtension: nil)!,
+            hiddenLayer1Bias: bundle.url(forResource: "b_conv2", withExtension: nil)!,
+            hiddenLayer2Bias: bundle.url(forResource: "b_conv3", withExtension: nil)!
         )
 
         superResolution = try! SuperResolution(device: device,

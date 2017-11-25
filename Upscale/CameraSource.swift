@@ -39,7 +39,7 @@ final class AVCameraSource: NSObject, CameraSource {
     static var getDevice: SignalProducer<AVCaptureDevice, CameraError> {
         let device = AVCaptureDevice.default(.builtInWideAngleCamera,
                                              for: .video,
-                                             position: .back)
+                                             position: .front)
         return SignalProducer(result: Result(device, failWith: .sourceCreationFailed(.noDevice)))
     }
 
@@ -56,7 +56,7 @@ final class AVCameraSource: NSObject, CameraSource {
 
             let source = self.init(session: session, input: input, output: output)
             output.videoSettings = [
-                kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA //kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange
+                kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA
             ]
             output.setSampleBufferDelegate(source, queue: source.queue)
 

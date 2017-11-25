@@ -9,13 +9,19 @@ class ImageCropperViewController: TOCropViewController, TOCropViewControllerDele
 
         self.viewModel = viewModel
         aspectRatioLockEnabled = true
+        resetAspectRatioEnabled = false
         aspectRatioPreset = .presetSquare
-        rotateButtonsHidden = true
-        rotateClockwiseButtonHidden = true
         delegate = self
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        rotateButtonsHidden = true
+        rotateClockwiseButtonHidden = true
+    }
+
     func cropViewController(_ cropViewController: TOCropViewController, didCropToRect cropRect: CGRect, angle: Int) {
-        viewModel.commit(cropRect)
+        viewModel.commit(cropRect, angle)
     }
 }
