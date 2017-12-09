@@ -2,20 +2,26 @@
 //#define SHOW_FEATURE_CHANNELS
 using namespace metal;
 
+constant int scaleFactor [[ function_constant(0) ]];
+constant bool bgra_to_rgba [[ function_constant(1) ]];
+
 kernel void input_transformer_f32(texture2d<float, access::read> input [[texture(0)]],
                               texture2d<float, access::write> output [[texture(1)]],
                               uint2 position [[thread_position_in_grid]]) {
     float4 rgba = input.read(position);
     output.write(rgba, position);
 }
+
 kernel void input_transformer(texture2d<float, access::read> input [[texture(0)]],
                               texture2d<float, access::write> output [[texture(1)]],
                               uint2 position [[thread_position_in_grid]]) {
     float4 rgba = input.read(position);
-    output.write(rgba * 255.0, position);
+    if (bgra_to_rgba) {
+        output.write(rgba.bgra * 255.0, position);
+    } else {
+        output.write(rgba * 255.0, position);
+    }
 }
-
-constant int scaleFactor [[ function_constant(0) ]];
 
 kernel void output_transformer(texture2d_array<float, access::read> input [[texture(0)]],
                                texture2d<float, access::write> output [[texture(1)]],

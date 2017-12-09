@@ -18,7 +18,16 @@ final class Transformer {
         assert(finalFeatureChannels % 3 == 0 && (finalFeatureChannels / 3) % scaleFactor == 0)
         var r = Int(exactly: sqrt(Double(finalFeatureChannels / 3)))!
 
-        let function = library.makeFunction(name: "input_transformer")!
+        #if os(iOS)
+        var convertFromBgra = true
+        #else
+        var convertFromBgra = false
+        #endif
+
+        let inputTransformerArgs = MTLFunctionConstantValues()
+        inputTransformerArgs.setConstantValue(&convertFromBgra, type: .bool, index: 1)
+        let function = try! library.makeFunction(name: "input_transformer",
+                                                  constantValues: inputTransformerArgs)
         unormInputState = try device.makeComputePipelineState(function: function)
 
         let function3 = library.makeFunction(name: "input_transformer_f32")!
